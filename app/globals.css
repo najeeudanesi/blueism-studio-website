@@ -1,0 +1,184 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-heading: var(--font-display);
+  --font-display: var(--font-display);
+  --font-sans: var(--font-geist-sans), 'Geist Fallback';
+  --font-mono: var(--font-geist-mono), 'Geist Mono Fallback';
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+}
+
+:root {
+  color-scheme: light;
+  /* Artboard palette */
+  --background: #F5F3EE;
+  --foreground: #0D0D0D;
+  --ink: #0D0D0D;
+  --cream: #F5F3EE;
+  --cream-dark: #EAE7DF;
+  --card: #F5F3EE;
+  --card-foreground: #0D0D0D;
+  --popover: #F5F3EE;
+  --popover-foreground: #0D0D0D;
+  --primary: #0000FF;
+  --primary-foreground: #F5F3EE;
+  --secondary: #5C5C5C;
+  --secondary-foreground: #F5F3EE;
+  --muted: #E8E5DD;
+  --muted-foreground: #888880;
+  --accent: #0000FF;
+  --accent-foreground: #F5F3EE;
+  --destructive: #FF4444;
+  --border: #D0CCC2;
+  --input: #D0CCC2;
+  --ring: #0000FF;
+  --radius: 0rem;
+  --sidebar: #F5F3EE;
+  --sidebar-foreground: #0D0D0D;
+  --sidebar-primary: #0D0D0D;
+  --sidebar-primary-foreground: #F5F3EE;
+  --sidebar-accent: #E8E5DD;
+  --sidebar-accent-foreground: #0D0D0D;
+  --sidebar-border: #D0CCC2;
+  --sidebar-ring: #0000FF;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    box-sizing: border-box;
+  }
+
+  html {
+    @apply font-sans;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background-color: var(--background);
+    color: var(--foreground);
+    /* Subtle grain texture via repeating SVG noise */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  }
+}
+
+/* =====================
+   ARTBOARD UTILITIES
+   ===================== */
+
+/* Grayscale image — applied to all images for B&W feel */
+.img-bw {
+  filter: grayscale(100%) contrast(1.05);
+  transition: filter 0.5s ease;
+}
+
+.img-bw:hover {
+  filter: grayscale(0%) contrast(1);
+}
+
+/* For images that should stay B&W on hover */
+.img-bw-fixed {
+  filter: grayscale(100%) contrast(1.05);
+}
+
+/* Section label (small uppercase monospaced) */
+.label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--secondary);
+}
+
+/* Thin ruled line */
+.ruled {
+  border-top: 1px solid var(--border);
+}
+
+/* Registration mark / corner mark */
+.reg-mark {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-color: var(--border);
+  border-style: solid;
+}
+
+.reg-mark-tl { top: 0; left: 0; border-width: 1px 0 0 1px; }
+.reg-mark-tr { top: 0; right: 0; border-width: 1px 1px 0 0; }
+.reg-mark-bl { bottom: 0; left: 0; border-width: 0 0 1px 1px; }
+.reg-mark-br { bottom: 0; right: 0; border-width: 0 1px 1px 0; }
+
+/* Display heading utility */
+.heading-display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+/* Dark section (ink black) */
+.section-ink {
+  background-color: var(--ink);
+  color: var(--cream);
+}
+
+/* Artboard dot grid pattern */
+.dot-grid {
+  background-image: radial-gradient(circle, rgba(0,0,0,0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* =====================
+   RESPONSIVE OVERRIDES
+   ===================== */
+@media (max-width: 768px) {
+  /* All 2-col editorial grids collapse to 1 col */
+  [style*="grid-template-columns: 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+  /* Reduce giant type on mobile */
+  [style*="clamp(4rem"] {
+    font-size: clamp(3rem, 12vw, 5rem) !important;
+  }
+  /* Reduce hero heading */
+  h1 {
+    font-size: clamp(3rem, 14vw, 8rem) !important;
+  }
+  /* Paddings */
+  section {
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+  }
+}
