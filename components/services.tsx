@@ -1,7 +1,6 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import Image from 'next/image'
 
 export default function Services() {
   const services = [
@@ -23,7 +22,7 @@ export default function Services() {
 
       <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '5rem 2rem', position: 'relative', zIndex: 2 }}>
 
-        {/* Top row — section label + logo */}
+        {/* Top row — section label */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '4rem' }}>
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -45,17 +44,6 @@ export default function Services() {
             }}>
               Services
             </h2>
-          </motion.div>
-
-          {/* Logo square — white bg on blue */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            style={{ width: '56px', height: '56px', backgroundColor: 'white', overflow: 'hidden', flexShrink: 0 }}
-          >
-            <Image src="/logo.png" alt="Blueism" width={56} height={56} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           </motion.div>
         </div>
 
@@ -93,20 +81,42 @@ export default function Services() {
           </div>
         </div>
 
-        {/* Bottom — tagline */}
+        {/* Bottom — tagline & CTA */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.5, duration: 0.8 }}
-          style={{ marginTop: '4rem', paddingTop: '2rem', borderTop: '1px solid rgba(255,255,255,0.2)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}
+          style={{ marginTop: '4rem', paddingTop: '2rem', borderTop: '1px solid rgba(255,255,255,0.2)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1.5rem' }}
         >
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)' }}>
-            All disciplines — one intention
-          </span>
-          <span style={{ fontFamily: 'var(--font-display)', fontStyle: 'italic', fontSize: '1.1rem', fontWeight: 300, color: 'rgba(255,255,255,0.7)' }}>
-            Form follows feeling.
-          </span>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)' }}>
+              All disciplines — one intention
+            </span>
+            <span style={{ fontFamily: 'var(--font-display)', fontStyle: 'italic', fontSize: '1.1rem', fontWeight: 300, color: 'rgba(255,255,255,0.7)' }}>
+              Form follows feeling.
+            </span>
+          </div>
+          <a
+            href="#contact"
+            style={{
+              display: 'inline-block',
+              backgroundColor: 'white',
+              color: '#0000FF',
+              fontFamily: 'var(--font-bold)',
+              fontWeight: 700,
+              fontSize: '0.7rem',
+              letterSpacing: '0.15em',
+              textTransform: 'uppercase',
+              padding: '1rem 1.75rem',
+              textDecoration: 'none',
+              transition: 'opacity 0.2s',
+            }}
+            onMouseEnter={e => (e.currentTarget.style.opacity = '0.9')}
+            onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
+          >
+            Discuss your project →
+          </a>
         </motion.div>
       </div>
     </section>

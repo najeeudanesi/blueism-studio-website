@@ -164,8 +164,8 @@
    RESPONSIVE OVERRIDES
    ===================== */
 @media (max-width: 768px) {
-  /* All 2-col editorial grids collapse to 1 col */
-  [style*="grid-template-columns: 1fr 1fr"] {
+  /* All grid-template-columns grids collapse to 1 col */
+  [style*="grid-template-columns"] {
     grid-template-columns: 1fr !important;
   }
   /* Reduce giant type on mobile */

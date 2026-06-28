@@ -43,20 +43,16 @@ export default function Hero() {
   return (
     <section className="hero-container" style={{ display: 'grid', gridTemplateColumns: '1fr 1.4fr', minHeight: '100vh', overflow: 'hidden', position: 'relative' }}>
 
-      {/* LEFT PANEL — Blue with logo + vertical text (Desktop only) */}
+      {/* LEFT PANEL — Blue with logo text + vertical text (Desktop only) */}
       <div className="hero-left-panel" style={{ backgroundColor: '#0000FF', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '2.5rem', position: 'relative', overflow: 'hidden', zIndex: 10 }}>
 
-        {/* Big square logo mark */}
+        {/* Big square logo text info (Logo mark image removed) */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}
+          style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}
         >
-          {/* Logo square — large */}
-          <div style={{ width: '80px', height: '80px', backgroundColor: 'white', overflow: 'hidden', flexShrink: 0 }}>
-            <Image src="/logo.png" alt="Blueism" width={80} height={80} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-          </div>
           <div>
             <span style={{ fontFamily: 'var(--font-bold)', fontSize: '0.65rem', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.6)' }}>
               Est. 2021 · Casablanca
@@ -101,21 +97,56 @@ export default function Hero() {
           <span style={{ fontFamily: 'var(--font-bold)', fontSize: '0.6rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)' }}>
             [ 01 / 06 ]
           </span>
-          <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.65rem', letterSpacing: '0.1em', color: 'rgba(255,255,255,0.55)', margin: 0, lineHeight: 1.8, maxWidth: '180px' }}>
+          <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.65rem', letterSpacing: '0.1em', color: 'rgba(255,255,255,0.55)', margin: 0, lineHeight: 1.8, maxWidth: '180px', marginBottom: '1rem' }}>
             Form follows feeling<br />الشعور يوجه الشكل
           </p>
+          <a
+            href="#contact"
+            style={{
+              display: 'inline-block',
+              backgroundColor: 'white',
+              color: '#0000FF',
+              fontFamily: 'var(--font-bold)',
+              fontWeight: 700,
+              fontSize: '0.65rem',
+              letterSpacing: '0.15em',
+              textTransform: 'uppercase',
+              padding: '0.75rem 1.25rem',
+              textDecoration: 'none',
+              transition: 'opacity 0.2s',
+              width: 'fit-content'
+            }}
+            onMouseEnter={e => (e.currentTarget.style.opacity = '0.9')}
+            onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
+          >
+            Start a project →
+          </a>
         </motion.div>
       </div>
 
-      {/* RIGHT PANEL — Video + big headline */}
+      {/* RIGHT PANEL — Media (Video/Static Fallback) + big headline */}
       <div className="hero-right-panel" style={{ position: 'relative', overflow: 'hidden', backgroundColor: '#0D0D0D' }}>
-        {/* Full-bleed B&W Stock Videos (Dual Stack for Seamless Crossfade) */}
+        {/* Full-bleed Media */}
         <div style={{ position: 'absolute', inset: 0, zIndex: 1 }}>
+          
+          {/* Static image thumbnail on mobile fallback to avoid black screens */}
+          <div className="mobile-video-fallback" style={{ display: 'none', width: '100%', height: '100%', position: 'absolute', inset: 0 }}>
+            <Image
+              src="https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?w=1200&q=85"
+              alt="Minimalist design interior space"
+              fill
+              className="img-bw-fixed"
+              style={{ objectFit: 'cover' }}
+              priority
+            />
+          </div>
+
           <video
             ref={videoRefA}
             muted
             playsInline
             controls={false}
+            className="img-bw-fixed desktop-video"
             style={{ 
               objectFit: 'cover', 
               width: '100%', 
@@ -126,7 +157,6 @@ export default function Hero() {
               opacity: activeVideo === 'A' ? 1 : 0,
               transition: 'opacity 1.5s ease-in-out',
             }}
-            className="img-bw-fixed"
           >
             <source src="https://cdn.pixabay.com/video/2026/04/11/345893_large.mp4" type="video/mp4" />
           </video>
@@ -136,6 +166,7 @@ export default function Hero() {
             muted
             playsInline
             controls={false}
+            className="img-bw-fixed desktop-video"
             style={{ 
               objectFit: 'cover', 
               width: '100%', 
@@ -146,7 +177,6 @@ export default function Hero() {
               opacity: activeVideo === 'B' ? 1 : 0,
               transition: 'opacity 1.5s ease-in-out',
             }}
-            className="img-bw-fixed"
           >
             <source src="https://cdn.pixabay.com/video/2026/04/11/345893_large.mp4" type="video/mp4" />
           </video>
@@ -159,11 +189,8 @@ export default function Hero() {
         <div style={{ position: 'absolute', top: '1.5rem', right: '1.5rem', width: '14px', height: '14px', borderTop: '1px solid rgba(255,255,255,0.3)', borderRight: '1px solid rgba(255,255,255,0.3)', zIndex: 3 }} />
         <div style={{ position: 'absolute', bottom: '1.5rem', right: '1.5rem', width: '14px', height: '14px', borderBottom: '1px solid rgba(255,255,255,0.3)', borderRight: '1px solid rgba(255,255,255,0.3)', zIndex: 3 }} />
 
-        {/* Mobile-only logo float */}
+        {/* Mobile-only logo float (Logo mark image removed) */}
         <div className="mobile-logo-overlay" style={{ display: 'none', position: 'absolute', top: '5.5rem', left: '1.5rem', zIndex: 10, alignItems: 'center', gap: '1rem' }}>
-          <div style={{ width: '48px', height: '48px', backgroundColor: '#0000FF', overflow: 'hidden', padding: '2px' }}>
-            <Image src="/logo.png" alt="Blueism" width={48} height={48} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-          </div>
           <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1 }}>
             <span style={{ fontFamily: 'var(--font-bold)', fontSize: '0.9rem', fontWeight: 700, color: 'white', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
               Blueism
@@ -241,6 +268,12 @@ export default function Hero() {
           }
           .mobile-logo-overlay {
             display: flex !important;
+          }
+          .desktop-video {
+            display: none !important;
+          }
+          .mobile-video-fallback {
+            display: block !important;
           }
         }
       `}</style>

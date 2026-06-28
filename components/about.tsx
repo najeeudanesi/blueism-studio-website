@@ -34,10 +34,6 @@ export default function About() {
               About
             </h2>
           </div>
-          {/* Small logo square */}
-          <div style={{ width: '44px', height: '44px', backgroundColor: '#0000FF', overflow: 'hidden', flexShrink: 0 }}>
-            <Image src="/logo.png" alt="Blueism" width={44} height={44} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-          </div>
         </motion.div>
 
         {/* Two-column editorial layout */}
@@ -79,13 +75,37 @@ export default function About() {
             </p>
 
             {/* Stats row */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem', paddingTop: '2rem', borderTop: '1px solid var(--border)' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem', paddingTop: '2rem', borderTop: '1px solid var(--border)', marginBottom: '2.5rem' }}>
               {[['4+', 'Years'], ['30+', 'Projects'], ['12+', 'Countries']].map(([val, label]) => (
                 <div key={label}>
                   <div style={{ fontFamily: 'var(--font-bold)', fontWeight: 700, fontSize: '2.5rem', letterSpacing: '-0.02em', lineHeight: 1, color: '#0000FF', marginBottom: '0.25rem' }}>{val}</div>
                   <span className="label">{label}</span>
                 </div>
               ))}
+            </div>
+
+            {/* CTA */}
+            <div>
+              <a
+                href="#contact"
+                style={{
+                  display: 'inline-block',
+                  backgroundColor: '#0000FF',
+                  color: 'white',
+                  fontFamily: 'var(--font-bold)',
+                  fontWeight: 700,
+                  fontSize: '0.75rem',
+                  letterSpacing: '0.15em',
+                  textTransform: 'uppercase',
+                  padding: '1.1rem 2rem',
+                  textDecoration: 'none',
+                  transition: 'opacity 0.2s',
+                }}
+                onMouseEnter={e => (e.currentTarget.style.opacity = '0.85')}
+                onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
+              >
+                Work with us →
+              </a>
             </div>
           </motion.div>
 

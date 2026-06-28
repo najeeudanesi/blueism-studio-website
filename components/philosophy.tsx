@@ -1,7 +1,6 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import Image from 'next/image'
 
 export default function Philosophy() {
   return (
@@ -13,10 +12,7 @@ export default function Philosophy() {
         backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E\")",
       }} />
 
-      {/* Large watermark logo — centered */}
-      <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%,-50%)', zIndex: 1, opacity: 0.06, pointerEvents: 'none', width: '400px', height: '400px' }}>
-        <Image src="/logo.png" alt="" fill style={{ objectFit: 'cover' }} aria-hidden />
-      </div>
+
 
       {/* Vertical "POSTURE" text — right side */}
       <div style={{ position: 'absolute', right: '2rem', top: '50%', transform: 'translateY(-50%)', zIndex: 3 }}>
@@ -105,12 +101,8 @@ export default function Philosophy() {
           </p>
 
           {/* Attribution */}
-          <footer style={{ marginTop: '3rem' }}>
+          <footer style={{ marginTop: '3.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '2rem' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
-              {/* Logo in footer attribution */}
-              <div style={{ width: '32px', height: '32px', backgroundColor: 'white', overflow: 'hidden', flexShrink: 0 }}>
-                <Image src="/logo.png" alt="Blueism" width={32} height={32} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-              </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
                 <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)' }}>
                   « La forme suit le sentiment » · « الشكل يتبع الشعور »
@@ -120,6 +112,26 @@ export default function Philosophy() {
                 </span>
               </div>
             </div>
+            <a
+              href="#contact"
+              style={{
+                display: 'inline-block',
+                backgroundColor: 'white',
+                color: '#0000FF',
+                fontFamily: 'var(--font-bold)',
+                fontWeight: 700,
+                fontSize: '0.7rem',
+                letterSpacing: '0.15em',
+                textTransform: 'uppercase',
+                padding: '1rem 1.75rem',
+                textDecoration: 'none',
+                transition: 'opacity 0.2s',
+              }}
+              onMouseEnter={e => (e.currentTarget.style.opacity = '0.9')}
+              onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
+            >
+              Let&apos;s create together →
+            </a>
           </footer>
         </blockquote>
       </motion.div>
