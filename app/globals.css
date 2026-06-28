@@ -161,6 +161,51 @@
 }
 
 /* =====================
+   WORK / SELECTED GRID
+   Consistent grid foundation: uniform columns + gutters.
+   A few items span extra columns/rows for rhythm.
+   ===================== */
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 280px;
+  grid-auto-flow: row dense;
+  gap: 1.5rem;
+}
+
+/* Spanning items — the only deviations from the uniform cell */
+.work-feature { grid-column: span 2; grid-row: span 2; }
+.work-wide    { grid-column: span 2; }
+
+/* Card internals fill their grid cell */
+.work-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.work-card-media {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+}
+
+@media (max-width: 900px) {
+  .work-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 260px; }
+  /* feature + wide both become full-width-of-two bands */
+  .work-feature { grid-column: span 2; grid-row: span 2; }
+  .work-wide    { grid-column: span 2; }
+}
+
+@media (max-width: 600px) {
+  .work-grid { grid-template-columns: 1fr; grid-auto-rows: auto; gap: 1.25rem; }
+  .work-feature,
+  .work-wide { grid-column: span 1; grid-row: span 1; }
+  .work-card-media { flex: none; height: 300px; }
+  .work-feature .work-card-media { height: 360px; }
+}
+
+/* =====================
    RESPONSIVE OVERRIDES
    ===================== */
 @media (max-width: 768px) {

@@ -63,51 +63,52 @@ export default function Work() {
           <span className="label">2023 — 2024</span>
         </motion.div>
 
-        {/* Asymmetric magazine grid - Row 1 */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '1.5rem', marginBottom: '1.5rem' }}>
-          <ProjectCard project={projects[0]} height={560} delay={0} />
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-            <ProjectCard project={projects[1]} height={340} delay={0.1} />
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3, duration: 0.7 }}
-              style={{ backgroundColor: '#0000FF', padding: '2rem', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', flex: 1, position: 'relative', overflow: 'hidden', minHeight: '160px' }}
-            >
-              <div>
-                <p style={{ fontFamily: 'var(--font-display)', fontSize: '1rem', fontStyle: 'italic', fontWeight: 300, color: 'rgba(255,255,255,0.85)', margin: 0, lineHeight: 1.6, marginBottom: '0.75rem' }}>
-                  &quot;Every project begins with a single, sincere question.&quot;
-                </p>
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)' }}>— Blueism Studio</span>
-              </div>
-            </motion.div>
-          </div>
-        </div>
+        {/* Unified grid — consistent columns & gutters, with a few
+            spanning items (feature + wide bands) for rhythm */}
+        <div className="work-grid">
+          {/* Feature — spans 2 cols × 2 rows */}
+          <ProjectCard project={projects[0]} delay={0} className="work-feature" />
 
-        {/* Row 2 */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: '1.5rem', marginBottom: '1.5rem' }}>
-          <ProjectCard project={projects[2]} height={360} delay={0.15} />
-          <ProjectCard project={projects[3]} height={560} delay={0.25} />
-        </div>
+          {/* Uniform cell */}
+          <ProjectCard project={projects[1]} delay={0.08} />
 
-        {/* Row 3 - Including Software project & integrated Grid CTA */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '1.5rem' }}>
-          {/* Integrated Grid CTA */}
+          {/* Quote — uniform cell */}
           <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.16, duration: 0.7 }}
+            style={{ backgroundColor: '#0000FF', padding: '2rem', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', position: 'relative', overflow: 'hidden' }}
+          >
+            <div>
+              <p style={{ fontFamily: 'var(--font-display)', fontSize: '1rem', fontStyle: 'italic', fontWeight: 300, color: 'rgba(255,255,255,0.85)', margin: 0, lineHeight: 1.6, marginBottom: '0.75rem' }}>
+                &quot;Every project begins with a single, sincere question.&quot;
+              </p>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)' }}>— Blueism Studio</span>
+            </div>
+          </motion.div>
+
+          {/* Uniform cell */}
+          <ProjectCard project={projects[2]} delay={0.12} />
+
+          {/* Wide band — spans 2 cols */}
+          <ProjectCard project={projects[3]} delay={0.2} className="work-wide" />
+
+          {/* CTA — wide band, spans 2 cols */}
+          <motion.div
+            className="work-wide"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            style={{ 
-              backgroundColor: '#0000FF', 
-              padding: '3rem 2.5rem', 
-              display: 'flex', 
-              flexDirection: 'column', 
-              justifyContent: 'space-between', 
-              minHeight: '400px',
+            style={{
+              backgroundColor: '#0000FF',
+              padding: '2.5rem',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
               color: 'white',
-              position: 'relative'
+              position: 'relative',
             }}
           >
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
@@ -120,16 +121,16 @@ export default function Work() {
               <h3 style={{
                 fontFamily: 'var(--font-bold)',
                 fontWeight: 700,
-                fontSize: 'clamp(2rem, 3.5vw, 3rem)',
+                fontSize: 'clamp(1.75rem, 3vw, 2.75rem)',
                 lineHeight: 1,
                 letterSpacing: '0.01em',
                 textTransform: 'uppercase',
                 margin: 0,
-                marginBottom: '1.5rem',
+                marginBottom: '1.25rem',
               }}>
                 Have a vision for your brand?
               </h3>
-              <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'rgba(255,255,255,0.7)', margin: 0, lineHeight: 1.6, marginBottom: '2rem', maxWidth: '380px' }}>
+              <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'rgba(255,255,255,0.7)', margin: 0, lineHeight: 1.6, marginBottom: '1.5rem', maxWidth: '420px' }}>
                 We translate complex brand philosophies into tactile spaces, systems, and product experiences.
               </p>
               <a
@@ -155,7 +156,8 @@ export default function Work() {
             </div>
           </motion.div>
 
-          <ProjectCard project={projects[4]} height={400} delay={0.2} />
+          {/* Uniform cell */}
+          <ProjectCard project={projects[4]} delay={0.18} />
         </div>
 
         {/* CTA row */}
@@ -192,16 +194,17 @@ export default function Work() {
   )
 }
 
-function ProjectCard({ project, height, delay }: { project: typeof projects[0]; height: number; delay: number }) {
+function ProjectCard({ project, delay, className }: { project: typeof projects[0]; delay: number; className?: string }) {
   return (
     <motion.div
+      className={className}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.15 }}
       transition={{ duration: 0.8, delay, ease: [0.16, 1, 0.3, 1] }}
     >
-      <Link href={`/work/${project.slug}`} style={{ textDecoration: 'none', display: 'block', color: 'inherit' }}>
-        <div style={{ position: 'relative', overflow: 'hidden', height: `${height}px` }}>
+      <Link href={`/work/${project.slug}`} className="work-card" style={{ textDecoration: 'none', color: 'inherit' }}>
+        <div className="work-card-media">
           <Image
             src={project.image}
             alt={project.title}
