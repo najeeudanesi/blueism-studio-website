@@ -5,10 +5,10 @@ import Image from 'next/image'
 
 export default function Hero() {
   return (
-    <section style={{ display: 'grid', gridTemplateColumns: '1fr 1.4fr', minHeight: '100vh', overflow: 'hidden' }}>
+    <section className="hero-container" style={{ display: 'grid', gridTemplateColumns: '1fr 1.4fr', minHeight: '100vh', overflow: 'hidden', position: 'relative' }}>
 
-      {/* LEFT PANEL — Blue with logo + vertical text */}
-      <div style={{ backgroundColor: '#0000FF', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '2rem', position: 'relative', overflow: 'hidden' }}>
+      {/* LEFT PANEL — Blue with logo + vertical text (Desktop only) */}
+      <div className="hero-left-panel" style={{ backgroundColor: '#0000FF', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '2.5rem', position: 'relative', overflow: 'hidden', zIndex: 10 }}>
 
         {/* Big square logo mark */}
         <motion.div
@@ -69,31 +69,51 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* RIGHT PANEL — B&W image + big headline */}
-      <div style={{ position: 'relative', overflow: 'hidden' }}>
-        {/* Full-bleed B&W image */}
-        <Image
-          src="https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?w=1600&q=85"
-          alt="Dramatic minimalist interior space"
-          fill
-          className="img-bw-fixed"
-          style={{ objectFit: 'cover', objectPosition: 'center' }}
-          priority
-        />
+      {/* RIGHT PANEL — Video + big headline */}
+      <div className="hero-right-panel" style={{ position: 'relative', overflow: 'hidden' }}>
+        {/* Full-bleed B&W Stock Video */}
+        <div style={{ position: 'absolute', inset: 0, zIndex: 1 }}>
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            controls={false}
+            style={{ objectFit: 'cover', width: '100%', height: '100%', pointerEvents: 'none' }}
+            className="img-bw-fixed"
+          >
+            <source src="https://cdn.pixabay.com/video/2026/04/11/345893_large.mp4" type="video/mp4" />
+          </video>
+        </div>
 
-        {/* Dark gradient bottom */}
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 40%, rgba(13,13,13,0.85) 100%)' }} />
+        {/* Dark gradient bottom overlay */}
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 30%, rgba(13,13,13,0.85) 100%)', zIndex: 2 }} />
 
         {/* Registration marks */}
-        <div style={{ position: 'absolute', top: '1.5rem', right: '1.5rem', width: '14px', height: '14px', borderTop: '1px solid rgba(255,255,255,0.3)', borderRight: '1px solid rgba(255,255,255,0.3)' }} />
-        <div style={{ position: 'absolute', bottom: '1.5rem', right: '1.5rem', width: '14px', height: '14px', borderBottom: '1px solid rgba(255,255,255,0.3)', borderRight: '1px solid rgba(255,255,255,0.3)' }} />
+        <div style={{ position: 'absolute', top: '1.5rem', right: '1.5rem', width: '14px', height: '14px', borderTop: '1px solid rgba(255,255,255,0.3)', borderRight: '1px solid rgba(255,255,255,0.3)', zIndex: 3 }} />
+        <div style={{ position: 'absolute', bottom: '1.5rem', right: '1.5rem', width: '14px', height: '14px', borderBottom: '1px solid rgba(255,255,255,0.3)', borderRight: '1px solid rgba(255,255,255,0.3)', zIndex: 3 }} />
+
+        {/* Mobile-only logo float */}
+        <div className="mobile-logo-overlay" style={{ display: 'none', position: 'absolute', top: '5.5rem', left: '1.5rem', zIndex: 10, alignItems: 'center', gap: '1rem' }}>
+          <div style={{ width: '48px', height: '48px', backgroundColor: '#0000FF', overflow: 'hidden', padding: '2px' }}>
+            <Image src="/logo.png" alt="Bluesim" width={48} height={48} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1 }}>
+            <span style={{ fontFamily: 'var(--font-bold)', fontSize: '0.9rem', fontWeight: 700, color: 'white', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+              Bluesim
+            </span>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.5rem', letterSpacing: '0.15em', color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase' }}>
+              Casablanca
+            </span>
+          </div>
+        </div>
 
         {/* Bottom text overlay */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '2rem' }}
+          style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '2.5rem 2rem', zIndex: 4 }}
         >
           <h1 style={{
             fontFamily: 'var(--font-bold)',
@@ -107,7 +127,7 @@ export default function Hero() {
             marginBottom: '1.25rem',
           }}>
             Bluesim<br />
-            <span style={{ color: '#0000FF', WebkitTextStroke: '0px', fontStyle: 'italic', fontFamily: 'var(--font-display)', fontWeight: 300, fontSize: '0.75em', letterSpacing: '-0.02em' }}>Studio</span>
+            <span style={{ color: '#0000FF', fontStyle: 'italic', fontFamily: 'var(--font-display)', fontWeight: 300, fontSize: '0.75em', letterSpacing: '-0.02em' }}>Studio</span>
           </h1>
 
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
@@ -118,6 +138,7 @@ export default function Hero() {
               animate={{ y: [0, 6, 0] }}
               transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
               style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', opacity: 0.45 }}
+              className="scroll-cue"
             >
               <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.5rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'white' }}>Scroll</span>
               <div style={{ width: '1px', height: '28px', backgroundColor: 'rgba(255,255,255,0.4)' }} />
@@ -128,14 +149,17 @@ export default function Hero() {
 
       <style>{`
         @media (max-width: 768px) {
-          section[style*="grid-template-columns: 1fr 1.4fr"] {
+          .hero-container {
             grid-template-columns: 1fr !important;
           }
-          section[style*="grid-template-columns: 1fr 1.4fr"] > div:first-child {
-            min-height: 200px !important;
+          .hero-left-panel {
+            display: none !important;
           }
-          section[style*="grid-template-columns: 1fr 1.4fr"] > div:last-child {
-            min-height: 70vh !important;
+          .hero-right-panel {
+            height: 100vh !important;
+          }
+          .mobile-logo-overlay {
+            display: flex !important;
           }
         }
       `}</style>
