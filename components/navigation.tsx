@@ -42,7 +42,7 @@ export default function Navigation() {
           <div style={{ width: '36px', height: '36px', flexShrink: 0, overflow: 'hidden', backgroundColor: '#0000FF' }}>
             <Image
               src="/logo.png"
-              alt="Bluesim logo"
+              alt="Blueism logo"
               width={36}
               height={36}
               style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
@@ -50,7 +50,7 @@ export default function Navigation() {
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1 }}>
             <span style={{ fontFamily: 'var(--font-bold)', fontSize: '1rem', fontWeight: 700, color: 'var(--foreground)', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
-              Bluesim
+              Blueism
             </span>
             <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.5rem', letterSpacing: '0.2em', color: 'var(--secondary)', textTransform: 'uppercase', marginTop: '2px' }}>
               Studio · Casablanca

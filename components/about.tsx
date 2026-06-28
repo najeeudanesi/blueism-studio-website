@@ -36,7 +36,7 @@ export default function About() {
           </div>
           {/* Small logo square */}
           <div style={{ width: '44px', height: '44px', backgroundColor: '#0000FF', overflow: 'hidden', flexShrink: 0 }}>
-            <Image src="/logo.png" alt="Bluesim" width={44} height={44} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            <Image src="/logo.png" alt="Blueism" width={44} height={44} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           </div>
         </motion.div>
 

@@ -1,9 +1,45 @@
 'use client'
 
+import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 
 export default function Hero() {
+  const [activeVideo, setActiveVideo] = useState<'A' | 'B'>('A')
+  const videoRefA = useRef<HTMLVideoElement>(null)
+  const videoRefB = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    const videoA = videoRefA.current
+    const videoB = videoRefB.current
+    if (!videoA || !videoB) return
+
+    // Pre-start video A
+    videoA.play().catch(() => {})
+
+    const interval = setInterval(() => {
+      if (activeVideo === 'A') {
+        if (videoA.duration && videoA.currentTime >= videoA.duration - 1.8) {
+          // Start playing B in the background
+          videoB.currentTime = 0
+          videoB.play().then(() => {
+            setActiveVideo('B')
+          }).catch(() => {})
+        }
+      } else {
+        if (videoB.duration && videoB.currentTime >= videoB.duration - 1.8) {
+          // Start playing A in the background
+          videoA.currentTime = 0
+          videoA.play().then(() => {
+            setActiveVideo('A')
+          }).catch(() => {})
+        }
+      }
+    }, 150)
+
+    return () => clearInterval(interval)
+  }, [activeVideo])
+
   return (
     <section className="hero-container" style={{ display: 'grid', gridTemplateColumns: '1fr 1.4fr', minHeight: '100vh', overflow: 'hidden', position: 'relative' }}>
 
@@ -19,7 +55,7 @@ export default function Hero() {
         >
           {/* Logo square — large */}
           <div style={{ width: '80px', height: '80px', backgroundColor: 'white', overflow: 'hidden', flexShrink: 0 }}>
-            <Image src="/logo.png" alt="Bluesim" width={80} height={80} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            <Image src="/logo.png" alt="Blueism" width={80} height={80} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           </div>
           <div>
             <span style={{ fontFamily: 'var(--font-bold)', fontSize: '0.65rem', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.6)' }}>
@@ -28,30 +64,32 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        {/* Vertical STUDIO text — center */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5, duration: 0.8 }}
+        {/* Vertical STUDIO text — center marquee */}
+        <div
           style={{
             position: 'absolute',
             left: '50%',
             top: '50%',
             transform: 'translate(-50%, -50%) rotate(-90deg)',
+            width: '100vh',
+            overflow: 'hidden',
             whiteSpace: 'nowrap',
+            display: 'flex',
+            zIndex: 1,
+            pointerEvents: 'none',
           }}
         >
-          <span style={{
-            fontFamily: 'var(--font-bold)',
-            fontSize: 'clamp(3rem, 6vw, 6rem)',
-            fontWeight: 700,
-            letterSpacing: '0.2em',
-            textTransform: 'uppercase',
-            color: 'rgba(255,255,255,0.12)',
-          }}>
-            BLUESIM STUDIO
-          </span>
-        </motion.div>
+          <div className="hero-marquee" style={{ display: 'flex', gap: '6rem', paddingRight: '6rem' }}>
+            <span className="marquee-item">BLUEISM STUDIO</span>
+            <span className="marquee-item">BLUEISM STUDIO</span>
+            <span className="marquee-item">BLUEISM STUDIO</span>
+          </div>
+          <div className="hero-marquee" style={{ display: 'flex', gap: '6rem', paddingRight: '6rem' }} aria-hidden>
+            <span className="marquee-item">BLUEISM STUDIO</span>
+            <span className="marquee-item">BLUEISM STUDIO</span>
+            <span className="marquee-item">BLUEISM STUDIO</span>
+          </div>
+        </div>
 
         {/* Bottom left — section marker */}
         <motion.div
@@ -70,16 +108,44 @@ export default function Hero() {
       </div>
 
       {/* RIGHT PANEL — Video + big headline */}
-      <div className="hero-right-panel" style={{ position: 'relative', overflow: 'hidden' }}>
-        {/* Full-bleed B&W Stock Video */}
+      <div className="hero-right-panel" style={{ position: 'relative', overflow: 'hidden', backgroundColor: '#0D0D0D' }}>
+        {/* Full-bleed B&W Stock Videos (Dual Stack for Seamless Crossfade) */}
         <div style={{ position: 'absolute', inset: 0, zIndex: 1 }}>
           <video
-            autoPlay
+            ref={videoRefA}
             muted
-            loop
             playsInline
             controls={false}
-            style={{ objectFit: 'cover', width: '100%', height: '100%', pointerEvents: 'none' }}
+            style={{ 
+              objectFit: 'cover', 
+              width: '100%', 
+              height: '100%', 
+              pointerEvents: 'none',
+              position: 'absolute',
+              inset: 0,
+              opacity: activeVideo === 'A' ? 1 : 0,
+              transition: 'opacity 1.5s ease-in-out',
+            }}
+            className="img-bw-fixed"
+          >
+            <source src="https://cdn.pixabay.com/video/2026/04/11/345893_large.mp4" type="video/mp4" />
+          </video>
+
+          <video
+            ref={videoRefB}
+            muted
+            playsInline
+            controls={false}
+            style={{ 
+              objectFit: 'cover', 
+              width: '100%', 
+              height: '100%', 
+              pointerEvents: 'none',
+              position: 'absolute',
+              inset: 0,
+              opacity: activeVideo === 'B' ? 1 : 0,
+              transition: 'opacity 1.5s ease-in-out',
+            }}
             className="img-bw-fixed"
           >
             <source src="https://cdn.pixabay.com/video/2026/04/11/345893_large.mp4" type="video/mp4" />
@@ -96,11 +162,11 @@ export default function Hero() {
         {/* Mobile-only logo float */}
         <div className="mobile-logo-overlay" style={{ display: 'none', position: 'absolute', top: '5.5rem', left: '1.5rem', zIndex: 10, alignItems: 'center', gap: '1rem' }}>
           <div style={{ width: '48px', height: '48px', backgroundColor: '#0000FF', overflow: 'hidden', padding: '2px' }}>
-            <Image src="/logo.png" alt="Bluesim" width={48} height={48} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            <Image src="/logo.png" alt="Blueism" width={48} height={48} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1 }}>
             <span style={{ fontFamily: 'var(--font-bold)', fontSize: '0.9rem', fontWeight: 700, color: 'white', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
-              Bluesim
+              Blueism
             </span>
             <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.5rem', letterSpacing: '0.15em', color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase' }}>
               Casablanca
@@ -126,7 +192,7 @@ export default function Hero() {
             margin: 0,
             marginBottom: '1.25rem',
           }}>
-            Bluesim<br />
+            Blueism<br />
             <span style={{ color: '#0000FF', fontStyle: 'italic', fontFamily: 'var(--font-display)', fontWeight: 300, fontSize: '0.75em', letterSpacing: '-0.02em' }}>Studio</span>
           </h1>
 
@@ -148,6 +214,21 @@ export default function Hero() {
       </div>
 
       <style>{`
+        .hero-marquee {
+          animation: marqueeScroll 25s linear infinite;
+        }
+        @keyframes marqueeScroll {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-100%); }
+        }
+        .marquee-item {
+          font-family: var(--font-bold);
+          font-size: clamp(3rem, 6vw, 6rem);
+          font-weight: 700;
+          letter-spacing: 0.25em;
+          text-transform: uppercase;
+          color: rgba(255, 255, 255, 0.35);
+        }
         @media (max-width: 768px) {
           .hero-container {
             grid-template-columns: 1fr !important;

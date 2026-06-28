@@ -20,7 +20,7 @@ const oswald = Oswald({
 })
 
 export const metadata: Metadata = {
-  title: 'Bluesim Studio — Form Follows Feeling',
+  title: 'Blueism Studio — Form Follows Feeling',
   description: 'A multidisciplinary design studio from Casablanca. 3D Design, Interior Architecture, Product Design, Software & UI/UX.',
   generator: 'v0.app',
   icons: {

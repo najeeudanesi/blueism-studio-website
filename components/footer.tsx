@@ -13,11 +13,11 @@ export default function Footer() {
           {/* Large logo + wordmark */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
             <div style={{ width: '64px', height: '64px', backgroundColor: 'white', overflow: 'hidden', flexShrink: 0 }}>
-              <Image src="/logo.png" alt="Bluesim" width={64} height={64} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <Image src="/logo.png" alt="Blueism" width={64} height={64} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
             <div>
               <span style={{ display: 'block', fontFamily: 'var(--font-bold)', fontWeight: 700, fontSize: '1.75rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'white', lineHeight: 1 }}>
-                Bluesim Studio
+                Blueism Studio
               </span>
               <span style={{ display: 'block', fontFamily: 'var(--font-mono)', fontSize: '0.55rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)', marginTop: '4px' }}>
                 Casablanca, Morocco · Remote
@@ -61,7 +61,7 @@ export default function Footer() {
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', justifyContent: 'flex-end' }}>
             <a
-              href="mailto:hello@bluesimstudio.com"
+              href="mailto:hello@blueismstudio.com"
               style={{
                 fontFamily: 'var(--font-display)',
                 fontSize: 'clamp(1.1rem, 2vw, 1.75rem)',
@@ -76,7 +76,7 @@ export default function Footer() {
               onMouseEnter={e => { e.currentTarget.style.color = '#0000FF'; e.currentTarget.style.borderColor = '#0000FF' }}
               onMouseLeave={e => { e.currentTarget.style.color = 'var(--foreground)'; e.currentTarget.style.borderColor = 'var(--border)' }}
             >
-              hello@bluesimstudio.com
+              hello@blueismstudio.com
             </a>
             <p className="label">We&apos;re interested in meaningful projects that challenge our thinking.</p>
           </div>
@@ -123,7 +123,7 @@ export default function Footer() {
           transition={{ delay: 0.2, duration: 0.6 }}
           style={{ paddingTop: '2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}
         >
-          <span className="label">© 2025 Bluesim Studio. All rights reserved.</span>
+          <span className="label">© 2025 Blueism Studio. All rights reserved.</span>
           {/* Small square logo mark at end */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
             <span className="label">Built with intention.</span>

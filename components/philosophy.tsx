@@ -109,14 +109,14 @@ export default function Philosophy() {
             <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
               {/* Logo in footer attribution */}
               <div style={{ width: '32px', height: '32px', backgroundColor: 'white', overflow: 'hidden', flexShrink: 0 }}>
-                <Image src="/logo.png" alt="Bluesim" width={32} height={32} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                <Image src="/logo.png" alt="Blueism" width={32} height={32} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
                 <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)' }}>
                   « La forme suit le sentiment » · « الشكل يتبع الشعور »
                 </span>
                 <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)' }}>
-                  — Bluesim Studio, Casablanca
+                  — Blueism Studio, Casablanca
                 </span>
               </div>
             </div>

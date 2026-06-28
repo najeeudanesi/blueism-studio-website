@@ -55,7 +55,7 @@ export default function Services() {
             transition={{ duration: 0.6, delay: 0.2 }}
             style={{ width: '56px', height: '56px', backgroundColor: 'white', overflow: 'hidden', flexShrink: 0 }}
           >
-            <Image src="/logo.png" alt="Bluesim" width={56} height={56} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            <Image src="/logo.png" alt="Blueism" width={56} height={56} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           </motion.div>
         </div>
 

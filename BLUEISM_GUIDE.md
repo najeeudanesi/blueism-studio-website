@@ -1,7 +1,7 @@
-# Bluesim Studio Website - Brand & Design Guide
+# Blueism Studio Website - Brand & Design Guide
 
 ## Overview
-This is a complete, production-ready upgrade of your Bluesim Studio website built with **Next.js 16**, **Tailwind CSS v4**, **Framer Motion**, and following your detailed design specifications.
+This is a complete, production-ready upgrade of your Blueism Studio website built with **Next.js 16**, **Tailwind CSS v4**, **Framer Motion**, and following your detailed design specifications.
 
 ## Color Palette
 
@@ -29,7 +29,7 @@ This is a complete, production-ready upgrade of your Bluesim Studio website buil
 
 ### 1. Navigation
 - Fixed top bar with backdrop blur
-- Logo left: "Bluesim Studio" in serif
+- Logo left: "Blueism Studio" in serif
 - Links right: Work, Services, About, Contact
 - Hover state: text turns blue (#0000FF)
 - Mobile: Slide-in menu with hamburger toggle
@@ -66,12 +66,12 @@ This is a complete, production-ready upgrade of your Bluesim Studio website buil
 ### 6. Philosophy/Quote
 - Full-width centered quote section
 - Large italic serif quote
-- Attribution: "— Bluesim Studio"
+- Attribution: "— Blueism Studio"
 - Off-white background with generous margins
 
 ### 7. Footer/Contact
 - "Let's work together" headline
-- Contact email: hello@bluesimstudio.com
+- Contact email: hello@blueismstudio.com
 - Social links: Instagram, Behance (plain text, no icons)
 - Location: Lagos, Nigeria · Remote
 - Copyright notice

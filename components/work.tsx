@@ -111,13 +111,13 @@ export default function Work() {
             >
               {/* Square logo mark inside card */}
               <div style={{ width: '28px', height: '28px', backgroundColor: 'white', overflow: 'hidden' }}>
-                <Image src="/logo.png" alt="Bluesim" width={28} height={28} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                <Image src="/logo.png" alt="Blueism" width={28} height={28} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
               <div>
                 <p style={{ fontFamily: 'var(--font-display)', fontSize: '1rem', fontStyle: 'italic', fontWeight: 300, color: 'rgba(255,255,255,0.85)', margin: 0, lineHeight: 1.6, marginBottom: '0.75rem' }}>
                   "Every project begins with a single, sincere question."
                 </p>
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)' }}>— Bluesim Studio</span>
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)' }}>— Blueism Studio</span>
               </div>
             </motion.div>
           </div>
