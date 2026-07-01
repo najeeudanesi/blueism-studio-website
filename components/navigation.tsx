@@ -13,10 +13,11 @@ export default function Navigation() {
   }, [])
 
   const links = [
-    { label: 'Work', href: '#work' },
+    { label: 'Information', href: '#about' },
     { label: 'Services', href: '#services' },
-    { label: 'About', href: '#about' },
-    { label: 'Contact', href: '#contact' },
+    { label: 'Work', href: '#work' },
+    { label: 'Blog', href: '#footer' },
+    { label: 'Contact Us', href: '#contact' },
   ]
 
   return (
@@ -33,37 +34,70 @@ export default function Navigation() {
         transition: 'all 0.4s ease',
       }}
     >
-      <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem', height: '60px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+      <div 
+        className="px-6 md:px-16"
+        style={{ 
+          width: '100%', 
+          height: '80px', 
+          display: 'flex', 
+          alignItems: 'center', 
+          justifyContent: 'space-between',
+          boxSizing: 'border-box'
+        }}
+      >
 
-        {/* Logo — wordmark only */}
+        {/* Logo — Square block + wordmark */}
         <a href="#" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+          <div style={{ 
+            width: '20px', 
+            height: '20px', 
+            backgroundColor: scrolled ? 'var(--foreground)' : '#FFFFFF', 
+            transition: 'background-color 0.3s ease' 
+          }} />
           <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1 }}>
-            <span style={{ fontFamily: 'var(--font-bold)', fontSize: '1rem', fontWeight: 700, color: 'var(--foreground)', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+            <span style={{ 
+              fontFamily: 'var(--font-bold)', 
+              fontSize: '0.75rem', 
+              fontWeight: 700, 
+              color: scrolled ? 'var(--foreground)' : '#FFFFFF', 
+              letterSpacing: '0.08em', 
+              textTransform: 'uppercase',
+              transition: 'color 0.3s ease'
+            }}>
               Blueism
             </span>
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.5rem', letterSpacing: '0.2em', color: 'var(--secondary)', textTransform: 'uppercase', marginTop: '2px' }}>
-              Studio · Casablanca
+            <span style={{ 
+              fontFamily: 'var(--font-bold)', 
+              fontSize: '0.65rem', 
+              fontWeight: 700, 
+              color: scrolled ? 'var(--secondary)' : 'rgba(255,255,255,0.7)', 
+              letterSpacing: '0.08em', 
+              textTransform: 'uppercase',
+              marginTop: '1px',
+              transition: 'color 0.3s ease'
+            }}>
+              Studios
             </span>
           </div>
         </a>
 
-        {/* Desktop Links */}
-        <div style={{ display: 'flex', gap: '2.5rem', alignItems: 'center' }} className="hidden md:flex">
+        {/* Desktop Links (Spaced evenly across navigation) */}
+        <div style={{ display: 'flex', gap: 'clamp(1.5rem, 5vw, 6rem)', alignItems: 'center' }} className="hidden md:flex">
           {links.map((link) => (
             <a
               key={link.label}
               href={link.href}
               style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.65rem',
-                letterSpacing: '0.18em',
-                textTransform: 'uppercase',
-                color: 'var(--secondary)',
+                fontFamily: 'var(--font-bold)',
+                fontSize: '0.75rem',
+                fontWeight: 600,
+                letterSpacing: '0.05em',
+                color: scrolled ? 'var(--foreground)' : 'rgba(255,255,255,0.8)',
                 textDecoration: 'none',
                 transition: 'color 0.2s ease',
               }}
-              onMouseEnter={e => (e.currentTarget.style.color = 'var(--primary)')}
-              onMouseLeave={e => (e.currentTarget.style.color = 'var(--secondary)')}
+              onMouseEnter={e => (e.currentTarget.style.color = scrolled ? 'var(--primary)' : '#FFFFFF')}
+              onMouseLeave={e => (e.currentTarget.style.color = scrolled ? 'var(--foreground)' : 'rgba(255,255,255,0.8)')}
             >
               {link.label}
             </a>
@@ -73,26 +107,64 @@ export default function Navigation() {
         {/* Mobile hamburger */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '4px' }}
+          style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '8px', zIndex: 60 }}
           className="md:hidden"
           aria-label="Toggle menu"
         >
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
-            <span style={{ display: 'block', width: '22px', height: '2px', backgroundColor: 'var(--foreground)', transition: 'all 0.3s' }} />
-            <span style={{ display: 'block', width: '22px', height: '2px', backgroundColor: 'var(--foreground)', transition: 'all 0.3s' }} />
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+            <span style={{ 
+              display: 'block', 
+              width: '24px', 
+              height: '2px', 
+              backgroundColor: isOpen ? (scrolled ? 'var(--foreground)' : '#FFFFFF') : (scrolled ? 'var(--foreground)' : '#FFFFFF'),
+              transform: isOpen ? 'rotate(45deg) translate(5px, 6px)' : 'none',
+              transition: 'all 0.3s ease' 
+            }} />
+            <span style={{ 
+              display: 'block', 
+              width: '24px', 
+              height: '2px', 
+              backgroundColor: isOpen ? (scrolled ? 'var(--foreground)' : '#FFFFFF') : (scrolled ? 'var(--foreground)' : '#FFFFFF'),
+              transform: isOpen ? 'rotate(-45deg) translate(5px, -6px)' : 'none',
+              transition: 'all 0.3s ease' 
+            }} />
           </div>
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Drawer */}
       {isOpen && (
-        <div style={{ borderTop: '1px solid var(--border)', backgroundColor: 'var(--background)', padding: '1.5rem 2rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+        <div style={{ 
+          position: 'absolute',
+          top: '100%',
+          left: 0,
+          right: 0,
+          backgroundColor: scrolled ? 'rgba(245,243,238,0.98)' : 'rgba(13,13,13,0.98)',
+          backdropFilter: 'blur(10px)',
+          borderBottom: '1px solid var(--border)',
+          padding: '2rem 1.5rem', 
+          display: 'flex', 
+          flexDirection: 'column', 
+          gap: '1.5rem',
+          boxShadow: '0 10px 30px rgba(0,0,0,0.1)'
+        }}>
           {links.map((link) => (
             <a
               key={link.label}
               href={link.href}
               onClick={() => setIsOpen(false)}
-              style={{ fontFamily: 'var(--font-bold)', fontSize: '1.5rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--foreground)', textDecoration: 'none' }}
+              style={{ 
+                fontFamily: 'var(--font-bold)', 
+                fontSize: '1.25rem', 
+                fontWeight: 700, 
+                letterSpacing: '0.1em', 
+                textTransform: 'uppercase', 
+                color: scrolled ? 'var(--foreground)' : '#FFFFFF', 
+                textDecoration: 'none',
+                transition: 'opacity 0.2s ease'
+              }}
+              onMouseEnter={e => (e.currentTarget.style.opacity = '0.7')}
+              onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
             >
               {link.label}
             </a>
