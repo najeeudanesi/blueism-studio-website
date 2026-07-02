@@ -41,36 +41,36 @@
 :root {
   color-scheme: light;
   /* Artboard palette */
-  --background: #F5F3EE;
+  --background: #FFFEEC;
   --foreground: #0D0D0D;
   --ink: #0D0D0D;
-  --cream: #F5F3EE;
-  --cream-dark: #EAE7DF;
-  --card: #F5F3EE;
+  --cream: #FFFEEC;
+  --cream-dark: #F4F2D8;
+  --card: #FFFEEC;
   --card-foreground: #0D0D0D;
-  --popover: #F5F3EE;
+  --popover: #FFFEEC;
   --popover-foreground: #0D0D0D;
-  --primary: #0000FF;
+  --primary: #487ef8;
   --primary-foreground: #F5F3EE;
   --secondary: #5C5C5C;
   --secondary-foreground: #F5F3EE;
   --muted: #E8E5DD;
   --muted-foreground: #888880;
-  --accent: #0000FF;
+  --accent: #487ef8;
   --accent-foreground: #F5F3EE;
   --destructive: #FF4444;
   --border: #D0CCC2;
   --input: #D0CCC2;
-  --ring: #0000FF;
+  --ring: #487ef8;
   --radius: 0rem;
-  --sidebar: #F5F3EE;
+  --sidebar: #FFFEEC;
   --sidebar-foreground: #0D0D0D;
   --sidebar-primary: #0D0D0D;
   --sidebar-primary-foreground: #F5F3EE;
   --sidebar-accent: #E8E5DD;
   --sidebar-accent-foreground: #0D0D0D;
   --sidebar-border: #D0CCC2;
-  --sidebar-ring: #0000FF;
+  --sidebar-ring: #487ef8;
 }
 
 @layer base {

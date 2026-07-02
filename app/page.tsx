@@ -11,7 +11,7 @@ export default function Page() {
   return (
     <>
       <Navigation />
-      <main className="bg-background">
+      <main className="bg-background" style={{ overflowX: 'clip' }}>
         <Hero />
         <Services />
         <Work />

@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     siteName: 'Blueism Studio',
     images: [
       {
-        url: '/logo.png',
+        url: '/favicon-512.png',
         width: 512,
         height: 512,
         alt: 'Blueism Studio brand mark',
@@ -64,23 +64,22 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Blueism Studio — Form Follows Feeling',
     description: 'Casablanca-based multidisciplinary design studio spanning Interior Architecture, 3D Design, Product Design, Software & UI/UX.',
-    images: ['/logo.png'],
+    images: ['/favicon-512.png'],
   },
   icons: {
     icon: [
-      {
-        url: '/logo.png',
-        type: 'image/png',
-      },
+      { url: '/favicon-32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-512.png', sizes: '512x512', type: 'image/png' },
     ],
-    apple: '/logo.png',
+    apple: '/favicon-180.png',
   },
 }
 
 export const viewport: Viewport = {
   colorScheme: 'light',
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#F5F3EE' },
+    { media: '(prefers-color-scheme: light)', color: '#FFFEEC' },
   ],
 }
 
@@ -98,7 +97,7 @@ export default function RootLayout({
         '@id': 'https://blueismstudio.com/#organization',
         'name': 'Blueism Studio',
         'url': 'https://blueismstudio.com',
-        'logo': 'https://blueismstudio.com/logo.png',
+        'logo': 'https://blueismstudio.com/favicon-512.png',
         'sameAs': [
           'https://instagram.com/blueismstudio',
           'https://behance.net/blueismstudio'
@@ -108,7 +107,7 @@ export default function RootLayout({
         '@type': 'LocalBusiness',
         '@id': 'https://blueismstudio.com/#localbusiness',
         'name': 'Blueism Studio',
-        'image': 'https://blueismstudio.com/logo.png',
+        'image': 'https://blueismstudio.com/favicon-512.png',
         'url': 'https://blueismstudio.com',
         'telephone': '',
         'priceRange': '$$$',

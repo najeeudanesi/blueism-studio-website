@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
@@ -29,7 +30,7 @@ export default function Navigation() {
         right: 0,
         zIndex: 50,
         borderBottom: scrolled ? '1px solid var(--border)' : '1px solid transparent',
-        backgroundColor: scrolled ? 'rgba(245,243,238,0.96)' : 'transparent',
+        backgroundColor: scrolled ? 'rgba(255,254,236,0.96)' : 'transparent',
         backdropFilter: scrolled ? 'blur(8px)' : 'none',
         transition: 'all 0.4s ease',
       }}
@@ -46,39 +47,27 @@ export default function Navigation() {
         }}
       >
 
-        {/* Logo — Square block + wordmark */}
-        <a href="#" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-          <div style={{ 
-            width: '20px', 
-            height: '20px', 
-            backgroundColor: scrolled ? 'var(--foreground)' : '#FFFFFF', 
-            transition: 'background-color 0.3s ease' 
-          }} />
-          <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1 }}>
-            <span style={{ 
-              fontFamily: 'var(--font-bold)', 
-              fontSize: '0.75rem', 
-              fontWeight: 700, 
-              color: scrolled ? 'var(--foreground)' : '#FFFFFF', 
-              letterSpacing: '0.08em', 
-              textTransform: 'uppercase',
-              transition: 'color 0.3s ease'
-            }}>
-              Blueism
-            </span>
-            <span style={{ 
-              fontFamily: 'var(--font-bold)', 
-              fontSize: '0.65rem', 
-              fontWeight: 700, 
-              color: scrolled ? 'var(--secondary)' : 'rgba(255,255,255,0.7)', 
-              letterSpacing: '0.08em', 
-              textTransform: 'uppercase',
-              marginTop: '1px',
-              transition: 'color 0.3s ease'
-            }}>
-              Studios
-            </span>
-          </div>
+        {/* Logo — official Blueism Studio wordmark */}
+        <a
+          href="#"
+          aria-label="Blueism Studio — home"
+          style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}
+        >
+          <Image
+            src="/logo-wordmark.png"
+            alt="Blueism Studio"
+            width={643}
+            height={254}
+            priority
+            style={{
+              height: '38px',
+              width: 'auto',
+              display: 'block',
+              // Over the dark hero the logo reads white; on the cream nav it shows brand colors
+              filter: scrolled ? 'none' : 'brightness(0) invert(1)',
+              transition: 'filter 0.3s ease',
+            }}
+          />
         </a>
 
         {/* Desktop Links (Spaced evenly across navigation) */}
@@ -139,7 +128,7 @@ export default function Navigation() {
           top: '100%',
           left: 0,
           right: 0,
-          backgroundColor: scrolled ? 'rgba(245,243,238,0.98)' : 'rgba(13,13,13,0.98)',
+          backgroundColor: scrolled ? 'rgba(255,254,236,0.98)' : 'rgba(13,13,13,0.98)',
           backdropFilter: 'blur(10px)',
           borderBottom: '1px solid var(--border)',
           padding: '2rem 1.5rem', 

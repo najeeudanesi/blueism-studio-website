@@ -8,7 +8,7 @@ export default function About() {
     <section id="about" style={{ backgroundColor: 'var(--cream-dark, #EAE7DF)', position: 'relative' }}>
 
       {/* Blue vertical accent strip — left edge */}
-      <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: '6px', backgroundColor: '#0000FF' }} />
+      <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: '6px', backgroundColor: '#487ef8' }} />
 
       <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '8rem 2rem 8rem 3rem' }}>
 
@@ -59,7 +59,7 @@ export default function About() {
               marginBottom: '2rem',
             }}>
               We build spaces<br />
-              <span style={{ color: '#0000FF' }}>that feel.</span>
+              <span style={{ color: '#487ef8' }}>that feel.</span>
             </p>
 
             <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.9rem', fontWeight: 300, lineHeight: 1.9, color: 'rgba(13,13,13,0.7)', marginBottom: '1.25rem' }}>
@@ -78,7 +78,7 @@ export default function About() {
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem', paddingTop: '2rem', borderTop: '1px solid var(--border)', marginBottom: '2.5rem' }}>
               {[['4+', 'Years'], ['30+', 'Projects'], ['12+', 'Countries']].map(([val, label]) => (
                 <div key={label}>
-                  <div style={{ fontFamily: 'var(--font-bold)', fontWeight: 700, fontSize: '2.5rem', letterSpacing: '-0.02em', lineHeight: 1, color: '#0000FF', marginBottom: '0.25rem' }}>{val}</div>
+                  <div style={{ fontFamily: 'var(--font-bold)', fontWeight: 700, fontSize: '2.5rem', letterSpacing: '-0.02em', lineHeight: 1, color: '#487ef8', marginBottom: '0.25rem' }}>{val}</div>
                   <span className="label">{label}</span>
                 </div>
               ))}
@@ -90,7 +90,7 @@ export default function About() {
                 href="#contact"
                 style={{
                   display: 'inline-block',
-                  backgroundColor: '#0000FF',
+                  backgroundColor: '#487ef8',
                   color: 'white',
                   fontFamily: 'var(--font-bold)',
                   fontWeight: 700,
@@ -120,7 +120,7 @@ export default function About() {
             {/* Offset frame */}
             <div style={{ position: 'absolute', inset: '-10px', border: '1px solid var(--border)', zIndex: 0, pointerEvents: 'none' }} />
             {/* Blue corner accent */}
-            <div style={{ position: 'absolute', top: '-10px', right: '-10px', width: '32px', height: '32px', backgroundColor: '#0000FF', zIndex: 3 }} />
+            <div style={{ position: 'absolute', top: '-10px', right: '-10px', width: '32px', height: '32px', backgroundColor: '#487ef8', zIndex: 3 }} />
             <div style={{ position: 'relative', height: '600px', overflow: 'hidden', zIndex: 1 }}>
               <Image
                 src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=900&q=85"

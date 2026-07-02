@@ -1,6 +1,7 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { useRef } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { projects } from '@/lib/projects'
@@ -17,7 +18,7 @@ export default function Work() {
         transform: 'translateY(-50%)',
         zIndex: 5,
         padding: '0 0.5rem',
-        backgroundColor: '#0000FF',
+        backgroundColor: '#487ef8',
         display: 'flex',
         alignItems: 'center',
         height: '100%',
@@ -78,7 +79,7 @@ export default function Work() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.16, duration: 0.7 }}
-            style={{ backgroundColor: '#0000FF', padding: '2rem', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', position: 'relative', overflow: 'hidden' }}
+            style={{ backgroundColor: '#487ef8', padding: '2rem', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', position: 'relative', overflow: 'hidden' }}
           >
             <div>
               <p style={{ fontFamily: 'var(--font-display)', fontSize: '1rem', fontStyle: 'italic', fontWeight: 300, color: 'rgba(255,255,255,0.85)', margin: 0, lineHeight: 1.6, marginBottom: '0.75rem' }}>
@@ -102,7 +103,7 @@ export default function Work() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.1 }}
             style={{
-              backgroundColor: '#0000FF',
+              backgroundColor: '#487ef8',
               padding: '2.5rem',
               display: 'flex',
               flexDirection: 'column',
@@ -138,7 +139,7 @@ export default function Work() {
                 style={{
                   display: 'inline-block',
                   backgroundColor: 'white',
-                  color: '#0000FF',
+                  color: '#487ef8',
                   fontFamily: 'var(--font-bold)',
                   fontWeight: 700,
                   fontSize: '0.7rem',
@@ -177,9 +178,9 @@ export default function Work() {
               fontSize: '0.75rem',
               letterSpacing: '0.15em',
               textTransform: 'uppercase',
-              color: '#0000FF',
+              color: '#487ef8',
               textDecoration: 'none',
-              borderBottom: '2px solid #0000FF',
+              borderBottom: '2px solid #487ef8',
               paddingBottom: '2px',
               transition: 'opacity 0.2s',
             }}
@@ -195,8 +196,14 @@ export default function Work() {
 }
 
 function ProjectCard({ project, delay, className }: { project: typeof projects[0]; delay: number; className?: string }) {
+  const ref = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
+  // Drift the image within its clipped frame — depth without shifting the card.
+  const imgY = useTransform(scrollYProgress, [0, 1], ['-8%', '8%'])
+
   return (
     <motion.div
+      ref={ref}
       className={className}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -205,13 +212,15 @@ function ProjectCard({ project, delay, className }: { project: typeof projects[0
     >
       <Link href={`/work/${project.slug}`} className="work-card" style={{ textDecoration: 'none', color: 'inherit' }}>
         <div className="work-card-media">
-          <Image
-            src={project.image}
-            alt={project.title}
-            fill
-            className="img-bw"
-            style={{ objectFit: 'cover' }}
-          />
+          <motion.div style={{ position: 'absolute', inset: '-12% 0', y: imgY }}>
+            <Image
+              src={project.image}
+              alt={project.title}
+              fill
+              className="img-bw"
+              style={{ objectFit: 'cover' }}
+            />
+          </motion.div>
           <div style={{ position: 'absolute', top: '1rem', left: '1rem', zIndex: 2 }}>
             <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', letterSpacing: '0.12em', color: 'rgba(245,243,238,0.8)', backgroundColor: 'rgba(13,13,13,0.5)', padding: '3px 8px' }}>
               — {project.number}
