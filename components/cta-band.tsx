@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 
 export default function CtaBand() {
   return (
-    <section style={{ backgroundColor: '#487ef8', color: 'white', position: 'relative', overflow: 'hidden' }}>
+    <section style={{ backgroundColor: '#383ce5', color: 'white', position: 'relative', overflow: 'hidden' }}>
       
       {/* Grain overlay */}
       <div style={{
@@ -55,7 +55,7 @@ export default function CtaBand() {
                 style={{
                   display: 'inline-block',
                   backgroundColor: 'white',
-                  color: '#487ef8',
+                  color: '#383ce5',
                   fontFamily: 'var(--font-bold)',
                   fontWeight: 700,
                   fontSize: '0.75rem',

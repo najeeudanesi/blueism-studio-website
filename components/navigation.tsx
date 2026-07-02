@@ -37,10 +37,10 @@ export default function Navigation() {
     >
       <div 
         className="px-6 md:px-16"
-        style={{ 
-          width: '100%', 
-          height: '80px', 
-          display: 'flex', 
+        style={{
+          width: '100%',
+          height: '96px',
+          display: 'flex',
           alignItems: 'center', 
           justifyContent: 'space-between',
           boxSizing: 'border-box'
@@ -60,12 +60,11 @@ export default function Navigation() {
             height={254}
             priority
             style={{
-              height: '38px',
+              height: '44px',
               width: 'auto',
               display: 'block',
-              // Over the dark hero the logo reads white; on the cream nav it shows brand colors
-              filter: scrolled ? 'none' : 'brightness(0) invert(1)',
-              transition: 'filter 0.3s ease',
+              // Keep the brand mark blue in every state (over hero + scrolled)
+              filter: 'none',
             }}
           />
         </a>
@@ -78,9 +77,10 @@ export default function Navigation() {
               href={link.href}
               style={{
                 fontFamily: 'var(--font-bold)',
-                fontSize: '0.75rem',
+                fontSize: '0.9rem',
                 fontWeight: 600,
                 letterSpacing: '0.05em',
+                fontStyle: link.label === 'Contact Us' ? 'italic' : 'normal',
                 color: scrolled ? 'var(--foreground)' : 'rgba(255,255,255,0.8)',
                 textDecoration: 'none',
                 transition: 'color 0.2s ease',

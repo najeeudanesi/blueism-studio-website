@@ -8,7 +8,7 @@ export default function Footer() {
     <footer id="contact" style={{ backgroundColor: 'var(--background)' }}>
 
       {/* Blue top band with logo */}
-      <div style={{ backgroundColor: '#487ef8', padding: '3rem 2rem' }}>
+      <div style={{ backgroundColor: '#383ce5', padding: '3rem 2rem' }}>
         <div style={{ maxWidth: '1400px', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '2rem' }}>
           {/* Large logo + wordmark */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
@@ -56,7 +56,7 @@ export default function Footer() {
               margin: 0,
             }}>
               Start a<br />
-              <span style={{ color: '#487ef8' }}>conversation.</span>
+              <span style={{ color: '#383ce5' }}>conversation.</span>
             </h2>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', justifyContent: 'flex-end' }}>
@@ -73,7 +73,7 @@ export default function Footer() {
                 paddingBottom: '0.5rem',
                 transition: 'color 0.2s, border-color 0.2s',
               }}
-              onMouseEnter={e => { e.currentTarget.style.color = '#487ef8'; e.currentTarget.style.borderColor = '#487ef8' }}
+              onMouseEnter={e => { e.currentTarget.style.color = '#383ce5'; e.currentTarget.style.borderColor = '#383ce5' }}
               onMouseLeave={e => { e.currentTarget.style.color = 'var(--foreground)'; e.currentTarget.style.borderColor = 'var(--border)' }}
             >
               hello@blueismstudio.com
@@ -105,7 +105,7 @@ export default function Footer() {
                   textDecoration: 'none',
                   transition: 'color 0.2s',
                 }}
-                onMouseEnter={e => (e.currentTarget.style.color = '#487ef8')}
+                onMouseEnter={e => (e.currentTarget.style.color = '#383ce5')}
                 onMouseLeave={e => (e.currentTarget.style.color = 'var(--foreground)')}
               >
                 {platform}
@@ -127,7 +127,7 @@ export default function Footer() {
           {/* Small square logo mark at end */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
             <span className="label">Built with intention.</span>
-            <div style={{ width: '20px', height: '20px', backgroundColor: '#487ef8', overflow: 'hidden' }}>
+            <div style={{ width: '20px', height: '20px', backgroundColor: '#383ce5', overflow: 'hidden' }}>
               <Image src="/logo.png" alt="" width={20} height={20} style={{ width: '100%', height: '100%', objectFit: 'cover' }} aria-hidden />
             </div>
           </div>

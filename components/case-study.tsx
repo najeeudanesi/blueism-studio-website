@@ -89,7 +89,7 @@ export default function CaseStudy({ project }: CaseStudyProps) {
         {/* Discipline / Project Number */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '2rem', borderBottom: '1px solid var(--border)', paddingBottom: '1rem' }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#487ef8' }}>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#383ce5' }}>
               {project.discipline}
             </span>
             <h1 style={{
@@ -125,7 +125,7 @@ export default function CaseStudy({ project }: CaseStudyProps) {
             priority
           />
           {/* Subtle blue accent corner */}
-          <div style={{ position: 'absolute', bottom: 0, left: 0, width: '24px', height: '24px', backgroundColor: '#487ef8' }} />
+          <div style={{ position: 'absolute', bottom: 0, left: 0, width: '24px', height: '24px', backgroundColor: '#383ce5' }} />
         </motion.div>
 
         {/* Sidebar Info & Main Description */}
@@ -152,7 +152,7 @@ export default function CaseStudy({ project }: CaseStudyProps) {
                 href="#contact-project"
                 style={{
                   display: 'inline-block',
-                  backgroundColor: '#487ef8',
+                  backgroundColor: '#383ce5',
                   color: 'white',
                   fontFamily: 'var(--font-bold)',
                   fontWeight: 700,
@@ -180,13 +180,13 @@ export default function CaseStudy({ project }: CaseStudyProps) {
             {/* Core Pillars: Challenge, Approach, Result */}
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2.5rem', marginTop: '1.5rem' }} className="pillars-grid">
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                <span className="label" style={{ color: '#487ef8' }}>[ The Challenge ]</span>
+                <span className="label" style={{ color: '#383ce5' }}>[ The Challenge ]</span>
                 <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.9rem', fontWeight: 300, lineHeight: 1.8, color: 'var(--secondary)', margin: 0 }}>
                   {project.challenge}
                 </p>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                <span className="label" style={{ color: '#487ef8' }}>[ The Approach ]</span>
+                <span className="label" style={{ color: '#383ce5' }}>[ The Approach ]</span>
                 <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.9rem', fontWeight: 300, lineHeight: 1.8, color: 'var(--secondary)', margin: 0 }}>
                   {project.approach}
                 </p>
@@ -194,7 +194,7 @@ export default function CaseStudy({ project }: CaseStudyProps) {
             </div>
 
             <div style={{ borderTop: '1px solid var(--border)', paddingTop: '1.5rem', marginTop: '1rem' }}>
-              <span className="label" style={{ color: '#487ef8', display: 'block', marginBottom: '0.5rem' }}>[ The Result ]</span>
+              <span className="label" style={{ color: '#383ce5', display: 'block', marginBottom: '0.5rem' }}>[ The Result ]</span>
               <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.95rem', fontWeight: 300, lineHeight: 1.8, color: 'var(--foreground)', margin: 0 }}>
                 {project.result}
               </p>
@@ -218,7 +218,7 @@ export default function CaseStudy({ project }: CaseStudyProps) {
         </div>
 
         {/* Big Bottom Blue CTA Band */}
-        <section id="contact-project" style={{ backgroundColor: '#487ef8', color: 'white', padding: '5rem 3rem', position: 'relative', overflow: 'hidden', marginBottom: '5rem' }}>
+        <section id="contact-project" style={{ backgroundColor: '#383ce5', color: 'white', padding: '5rem 3rem', position: 'relative', overflow: 'hidden', marginBottom: '5rem' }}>
           {/* Grain overlay */}
           <div style={{
             position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 1,
@@ -248,7 +248,7 @@ export default function CaseStudy({ project }: CaseStudyProps) {
                 style={{
                   display: 'inline-block',
                   backgroundColor: 'white',
-                  color: '#487ef8',
+                  color: '#383ce5',
                   fontFamily: 'var(--font-bold)',
                   fontWeight: 700,
                   fontSize: '0.75rem',

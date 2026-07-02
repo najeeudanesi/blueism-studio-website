@@ -184,7 +184,7 @@ export default function Hero() {
               lineHeight: 0.82,
               letterSpacing: '-0.03em',
               textTransform: 'uppercase',
-              color: '#EBEBEB',
+              color: 'var(--primary)',
               margin: 0,
               display: 'flex',
             }}
@@ -249,7 +249,7 @@ export default function Hero() {
                 display: 'inline-flex',
                 alignItems: 'center',
                 backgroundColor: 'white',
-                color: '#487ef8',
+                color: '#383ce5',
                 fontFamily: 'var(--font-bold)',
                 fontWeight: 700,
                 fontSize: '0.75rem',
@@ -260,12 +260,12 @@ export default function Hero() {
                 transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
               }}
               onMouseEnter={e => {
-                e.currentTarget.style.backgroundColor = '#487ef8'
+                e.currentTarget.style.backgroundColor = '#383ce5'
                 e.currentTarget.style.color = '#FFFFFF'
               }}
               onMouseLeave={e => {
                 e.currentTarget.style.backgroundColor = '#FFFFFF'
-                e.currentTarget.style.color = '#487ef8'
+                e.currentTarget.style.color = '#383ce5'
               }}
             >
               Start a project &nbsp;&rarr;

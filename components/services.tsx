@@ -115,7 +115,7 @@ export default function Services() {
           style={{ margin: '0 0 0.75rem' }}
         >
           <p style={{
-            fontFamily: 'var(--font-bold)', fontWeight: 600, color: '#487ef8',
+            fontFamily: 'var(--font-sans)', fontWeight: 400, color: '#487ef8',
             fontSize: 'clamp(1rem, 1.6vw, 1.25rem)', lineHeight: 1.55, margin: 0,
             maxWidth: '560px', textAlign: 'left',
           }}>
@@ -125,7 +125,7 @@ export default function Services() {
           </p>
           <p style={{
             fontFamily: 'var(--font-display)', fontStyle: 'italic', fontWeight: 300,
-            color: 'rgba(72,126,248,0.7)', fontSize: '1.05rem', marginTop: '0.9rem', marginBottom: 0,
+            color: 'rgba(72,126,248,0.85)', fontSize: '1.05rem', marginTop: '0.9rem', marginBottom: 0,
             textAlign: 'center',
           }}>
             Start your journey by knowing our services — which are many.
@@ -225,7 +225,7 @@ export default function Services() {
         .svc-nav-item:hover { transform: translateX(8px); }
         .svc-nav-dot {
           width: 7px; height: 7px; border-radius: 50%;
-          background: #487ef8; flex-shrink: 0;
+          background: #383ce5; flex-shrink: 0;
           transform: scale(0.55);
           opacity: 0.35;
           transition: all 0.3s ease;
@@ -233,23 +233,28 @@ export default function Services() {
         .svc-nav-item:hover .svc-nav-dot,
         .svc-nav-item[data-active="true"] .svc-nav-dot {
           transform: scale(1); opacity: 1;
-          box-shadow: 0 0 0 4px rgba(72,126,248,0.15);
+          box-shadow: 0 0 0 4px rgba(56,60,229,0.15);
         }
         .svc-nav-num {
           font-family: var(--font-mono); font-size: 0.8rem;
-          color: rgba(72,126,248,0.5); flex-shrink: 0;
+          color: rgba(56,60,229,0.5); flex-shrink: 0;
         }
         .svc-nav-name {
           font-family: var(--font-bold); font-weight: 700;
           font-size: clamp(1rem, 1.6vw, 1.35rem);
           text-transform: uppercase; letter-spacing: 0.02em;
-          color: var(--foreground);
+          color: #487ef8;
+          text-decoration: none;
           transition: color 0.3s ease;
         }
         .svc-nav-item:hover .svc-nav-name,
-        .svc-nav-item[data-active="true"] .svc-nav-name { color: #487ef8; }
+        .svc-nav-item[data-active="true"] .svc-nav-name {
+          color: #487ef8;
+          text-decoration: underline;
+          text-underline-offset: 4px;
+        }
         .svc-nav-arrow {
-          margin-left: auto; color: #487ef8; font-size: 0.9rem;
+          margin-left: auto; color: #383ce5; font-size: 0.9rem;
           opacity: 0; transform: translateX(-6px);
           transition: all 0.3s ease;
         }
@@ -264,8 +269,8 @@ export default function Services() {
           align-items: stretch;
           min-height: 380px;
           padding: 1.5rem 0 2rem;
-          border-top: 1.5px solid rgba(72,126,248,0.3);
-          scroll-margin-top: 80px;
+          border-top: 3px solid rgba(56,60,229,0.3);
+          scroll-margin-top: 96px;
         }
         .svc-block-text {
           display: flex;
@@ -284,13 +289,13 @@ export default function Services() {
           position: relative;
           aspect-ratio: 1 / 1;
           overflow: hidden;
-          background: #487ef8;
-          box-shadow: 0 20px 40px -18px rgba(72,126,248,0.45);
+          background: #383ce5;
+          box-shadow: 0 20px 40px -18px rgba(56,60,229,0.45);
           transition: transform 0.5s cubic-bezier(0.16,1,0.3,1), box-shadow 0.5s ease;
         }
         .svc-img-wrap:hover {
           transform: translateY(-8px);
-          box-shadow: 0 34px 60px -20px rgba(72,126,248,0.6);
+          box-shadow: 0 34px 60px -20px rgba(56,60,229,0.6);
         }
         .svc-duotone {
           object-fit: cover;
@@ -343,7 +348,7 @@ function TypeOnView({ text, style }: { text: string; style: React.CSSProperties 
           display: 'inline-block',
           width: '2px',
           height: '1.05em',
-          background: '#383ce5',
+          background: '#487ef8',
           verticalAlign: 'text-bottom',
           marginLeft: '2px',
           transform: 'translateY(3px)',
@@ -388,7 +393,7 @@ function WeCreateHeader() {
           transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
           style={{
             position: 'absolute', inset: 0, transformOrigin: 'left',
-            background: 'rgba(72,126,248,0.20)', zIndex: 0,
+            background: 'rgba(56,60,229,0.20)', zIndex: 0,
           }}
         />
 
@@ -398,9 +403,9 @@ function WeCreateHeader() {
 
         <h2 style={{
           position: 'relative', zIndex: 1,
-          fontFamily: 'var(--font-bold)', fontWeight: 700,
+          fontFamily: 'var(--font-sans)', fontWeight: 300,
           fontSize: 'clamp(2rem, 5vw, 3.75rem)',
-          letterSpacing: '0.02em', textTransform: 'uppercase',
+          letterSpacing: '0.03em', textTransform: 'uppercase',
           color: 'var(--foreground)', margin: 0, lineHeight: 1,
           whiteSpace: 'nowrap',
         }}>
@@ -410,7 +415,7 @@ function WeCreateHeader() {
               aria-hidden
               animate={{ opacity: [1, 1, 0, 0] }}
               transition={{ duration: 0.9, repeat: Infinity, ease: 'linear' }}
-              style={{ display: 'inline-block', width: '3px', height: '0.95em', background: '#487ef8', verticalAlign: 'text-bottom', marginLeft: '2px' }}
+              style={{ display: 'inline-block', width: '3px', height: '0.95em', background: '#383ce5', verticalAlign: 'text-bottom', marginLeft: '2px' }}
             />
           )}
           {/* Reserve final width to avoid layout shift while typing */}
@@ -440,8 +445,8 @@ function SelectionHandle({ position }: { position: 'start' | 'end' }) {
           : { bottom: 0, right: 0, transform: 'translate(50%, 100%)' }),
       }}
     >
-      <span style={{ width: 13, height: 13, borderRadius: '50%', background: '#487ef8' }} />
-      <span style={{ width: 2, height: 15, background: '#487ef8' }} />
+      <span style={{ width: 13, height: 13, borderRadius: '50%', background: '#383ce5' }} />
+      <span style={{ width: 2, height: 15, background: '#383ce5' }} />
     </motion.div>
   )
 }
@@ -486,13 +491,13 @@ function ServiceBlock({ service, index, reverse, onActive }: { service: Service;
         <TypeOnView
           text={service.desc}
           style={{
-            fontFamily: 'var(--font-bold)', fontWeight: 500,
+            fontFamily: 'var(--font-sans)', fontWeight: 400,
             fontSize: 'clamp(0.9rem, 1.3vw, 1.05rem)', lineHeight: 1.6,
-            color: 'rgba(13,13,13,0.75)', maxWidth: '420px', margin: 0,
+            color: '#487ef8', maxWidth: '420px', margin: 0,
           }}
         />
 
-        <span style={{ display: 'inline-block', marginTop: '1rem', fontFamily: 'var(--font-mono)', fontSize: '0.6rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(72,126,248,0.55)' }}>
+        <span style={{ display: 'inline-block', marginTop: '1rem', fontFamily: 'var(--font-mono)', fontSize: '0.6rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(56,60,229,0.55)' }}>
           {service.tag}
         </span>
       </motion.div>

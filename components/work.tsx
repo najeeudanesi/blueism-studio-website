@@ -18,7 +18,7 @@ export default function Work() {
         transform: 'translateY(-50%)',
         zIndex: 5,
         padding: '0 0.5rem',
-        backgroundColor: '#487ef8',
+        backgroundColor: '#383ce5',
         display: 'flex',
         alignItems: 'center',
         height: '100%',
@@ -79,7 +79,7 @@ export default function Work() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.16, duration: 0.7 }}
-            style={{ backgroundColor: '#487ef8', padding: '2rem', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', position: 'relative', overflow: 'hidden' }}
+            style={{ backgroundColor: '#383ce5', padding: '2rem', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', position: 'relative', overflow: 'hidden' }}
           >
             <div>
               <p style={{ fontFamily: 'var(--font-display)', fontSize: '1rem', fontStyle: 'italic', fontWeight: 300, color: 'rgba(255,255,255,0.85)', margin: 0, lineHeight: 1.6, marginBottom: '0.75rem' }}>
@@ -103,7 +103,7 @@ export default function Work() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.1 }}
             style={{
-              backgroundColor: '#487ef8',
+              backgroundColor: '#383ce5',
               padding: '2.5rem',
               display: 'flex',
               flexDirection: 'column',
@@ -139,7 +139,7 @@ export default function Work() {
                 style={{
                   display: 'inline-block',
                   backgroundColor: 'white',
-                  color: '#487ef8',
+                  color: '#383ce5',
                   fontFamily: 'var(--font-bold)',
                   fontWeight: 700,
                   fontSize: '0.7rem',
@@ -178,9 +178,9 @@ export default function Work() {
               fontSize: '0.75rem',
               letterSpacing: '0.15em',
               textTransform: 'uppercase',
-              color: '#487ef8',
+              color: '#383ce5',
               textDecoration: 'none',
-              borderBottom: '2px solid #487ef8',
+              borderBottom: '2px solid #383ce5',
               paddingBottom: '2px',
               transition: 'opacity 0.2s',
             }}

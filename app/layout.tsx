@@ -1,9 +1,8 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
-import { Geist, Geist_Mono, Cormorant_Garamond, Oswald } from 'next/font/google'
+import { Geist_Mono, Cormorant_Garamond, Roboto } from 'next/font/google'
 import './globals.css'
 
-const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] })
 const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
   subsets: ['latin'],
@@ -13,9 +12,10 @@ const cormorantGaramond = Cormorant_Garamond({
   weight: ['400', '500', '600', '700'],
   subsets: ['latin'],
 })
-const oswald = Oswald({
-  variable: '--font-bold',
-  weight: ['400', '500', '600', '700'],
+// Paragraph / body typeface
+const roboto = Roboto({
+  variable: '--font-roboto',
+  weight: ['300', '400', '500', '700'],
   subsets: ['latin'],
 })
 
@@ -141,7 +141,7 @@ export default function RootLayout({
   }
 
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${cormorantGaramond.variable} ${oswald.variable} bg-background`}>
+    <html lang="en" className={`${geistMono.variable} ${cormorantGaramond.variable} ${roboto.variable} bg-background`}>
       <body className="font-sans antialiased bg-background text-foreground">
         {/* Injecting JSON-LD for rich snippets */}
         <script
