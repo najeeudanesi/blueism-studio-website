@@ -39,8 +39,8 @@ export default function Navigation() {
         className="px-6 md:px-16"
         style={{
           width: '100%',
-          // 20% smaller overall than the previous 96px; scales down further past the hero.
-          height: scrolled ? '62px' : '77px',
+          // Starts compact, then grows once scrolled past the hero.
+          height: scrolled ? '77px' : '62px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
@@ -62,8 +62,8 @@ export default function Navigation() {
             height={254}
             priority
             style={{
-              // 20% smaller wordmark; shrinks again once scrolled past the hero.
-              height: scrolled ? '28px' : '35px',
+              // Starts smaller, then grows once scrolled past the hero.
+              height: scrolled ? '35px' : '28px',
               width: 'auto',
               display: 'block',
               transition: 'height 0.4s ease',
@@ -81,8 +81,8 @@ export default function Navigation() {
               href={link.href}
               style={{
                 fontFamily: 'var(--font-bold)',
-                // 20% smaller than the previous 0.9rem
-                fontSize: scrolled ? '0.68rem' : '0.72rem',
+                // Starts smaller, then grows once scrolled past the hero.
+                fontSize: scrolled ? '0.72rem' : '0.68rem',
                 fontWeight: 600,
                 letterSpacing: '0.05em',
                 transition: 'color 0.2s ease, font-size 0.4s ease',
