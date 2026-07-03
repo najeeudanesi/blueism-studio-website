@@ -1,10 +1,11 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 
 export default function Philosophy() {
   return (
-    <section style={{ backgroundColor: '#383ce5', color: 'white', position: 'relative', overflow: 'hidden' }}>
+    <section id="philosophy" style={{ backgroundColor: '#383ce5', color: 'white', position: 'relative', overflow: 'hidden' }}>
 
       {/* Grain overlay */}
       <div style={{
@@ -36,6 +37,23 @@ export default function Philosophy() {
         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         style={{ position: 'relative', zIndex: 3, maxWidth: '1100px', margin: '0 auto', padding: '9rem 2rem' }}
       >
+        {/* White brand logo */}
+        <div style={{ marginBottom: '2.5rem' }}>
+          <Image
+            src="/logo-wordmark.png"
+            alt="Blueism Studio"
+            width={643}
+            height={254}
+            style={{
+              height: 'clamp(38px, 5vw, 56px)',
+              width: 'auto',
+              display: 'block',
+              // Render the blue wordmark as solid white on the blue field
+              filter: 'brightness(0) invert(1)',
+            }}
+          />
+        </div>
+
         {/* Section label */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '3rem' }}>
           <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)' }}>[ 05 ]</span>

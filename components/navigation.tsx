@@ -14,7 +14,7 @@ export default function Navigation() {
   }, [])
 
   const links = [
-    { label: 'Information', href: '#about' },
+    { label: 'Information', href: '#philosophy' },
     { label: 'Services', href: '#services' },
     { label: 'Work', href: '#work' },
     { label: 'Blog', href: '#footer' },
@@ -35,15 +35,17 @@ export default function Navigation() {
         transition: 'all 0.4s ease',
       }}
     >
-      <div 
+      <div
         className="px-6 md:px-16"
         style={{
           width: '100%',
-          height: '96px',
+          // 20% smaller overall than the previous 96px; scales down further past the hero.
+          height: scrolled ? '62px' : '77px',
           display: 'flex',
-          alignItems: 'center', 
+          alignItems: 'center',
           justifyContent: 'space-between',
-          boxSizing: 'border-box'
+          boxSizing: 'border-box',
+          transition: 'height 0.4s ease',
         }}
       >
 
@@ -60,9 +62,11 @@ export default function Navigation() {
             height={254}
             priority
             style={{
-              height: '44px',
+              // 20% smaller wordmark; shrinks again once scrolled past the hero.
+              height: scrolled ? '28px' : '35px',
               width: 'auto',
               display: 'block',
+              transition: 'height 0.4s ease',
               // Keep the brand mark blue in every state (over hero + scrolled)
               filter: 'none',
             }}
@@ -77,13 +81,14 @@ export default function Navigation() {
               href={link.href}
               style={{
                 fontFamily: 'var(--font-bold)',
-                fontSize: '0.9rem',
+                // 20% smaller than the previous 0.9rem
+                fontSize: scrolled ? '0.68rem' : '0.72rem',
                 fontWeight: 600,
                 letterSpacing: '0.05em',
+                transition: 'color 0.2s ease, font-size 0.4s ease',
                 fontStyle: link.label === 'Contact Us' ? 'italic' : 'normal',
                 color: scrolled ? 'var(--foreground)' : 'rgba(255,255,255,0.8)',
                 textDecoration: 'none',
-                transition: 'color 0.2s ease',
               }}
               onMouseEnter={e => (e.currentTarget.style.color = scrolled ? 'var(--primary)' : '#FFFFFF')}
               onMouseLeave={e => (e.currentTarget.style.color = scrolled ? 'var(--foreground)' : 'rgba(255,255,255,0.8)')}

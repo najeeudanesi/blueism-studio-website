@@ -3,8 +3,8 @@ import Hero from '@/components/hero'
 import Services from '@/components/services'
 import Work from '@/components/work'
 import CtaBand from '@/components/cta-band'
-import About from '@/components/about'
 import Philosophy from '@/components/philosophy'
+import Contact from '@/components/contact'
 import Footer from '@/components/footer'
 
 export default function Page() {
@@ -16,8 +16,8 @@ export default function Page() {
         <Services />
         <Work />
         <CtaBand />
-        <About />
-        <Philosophy />
+        {/* <Philosophy /> */}
+        <Contact />
       </main>
       <Footer />
     </>

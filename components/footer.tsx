@@ -3,136 +3,143 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 
+const columns = [
+  {
+    title: 'Studio',
+    links: ['Services', 'Work', 'Manifesto', 'Contact'],
+  },
+  {
+    title: 'Services',
+    links: ['Graphic Design', 'Interior Design', '3D Design', 'Software', 'UI/UX Design'],
+  },
+  {
+    title: 'Connect',
+    links: ['Instagram', 'Behance', 'LinkedIn', 'Dribbble'],
+  },
+]
+
 export default function Footer() {
   return (
-    <footer id="contact" style={{ backgroundColor: 'var(--background)' }}>
+    <footer id="footer" style={{ position: 'relative', overflow: 'hidden', color: 'white' }}>
 
-      {/* Blue top band with logo */}
-      <div style={{ backgroundColor: '#383ce5', padding: '3rem 2rem' }}>
-        <div style={{ maxWidth: '1400px', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '2rem' }}>
-          {/* Large logo + wordmark */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
-            <div style={{ width: '64px', height: '64px', backgroundColor: 'white', overflow: 'hidden', flexShrink: 0 }}>
-              <Image src="/logo.png" alt="Blueism" width={64} height={64} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-            </div>
-            <div>
-              <span style={{ display: 'block', fontFamily: 'var(--font-bold)', fontWeight: 700, fontSize: '1.75rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'white', lineHeight: 1 }}>
-                Blueism Studio
-              </span>
-              <span style={{ display: 'block', fontFamily: 'var(--font-mono)', fontSize: '0.55rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)', marginTop: '4px' }}>
-                Casablanca, Morocco · Remote
-              </span>
-            </div>
+      {/* Background image */}
+      <Image
+        src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1800&q=85"
+        alt=""
+        fill
+        aria-hidden
+        sizes="100vw"
+        style={{ objectFit: 'cover', filter: 'grayscale(100%) contrast(1.05)' }}
+      />
+      {/* Dark overlay */}
+      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(13,13,13,0.82) 0%, rgba(13,13,13,0.92) 100%)' }} />
+      {/* Subtle blue wash */}
+      <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at 80% 0%, rgba(56,60,229,0.35), transparent 55%)' }} />
+
+      <div style={{ position: 'relative', zIndex: 2, maxWidth: '1400px', margin: '0 auto', padding: '6rem 2rem 2.5rem' }}>
+
+        {/* Branding + tagline */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '2rem', paddingBottom: '3.5rem', borderBottom: '1px solid rgba(255,255,255,0.15)' }}
+        >
+          <div>
+            <Image
+              src="/logo-wordmark.png"
+              alt="Blueism Studio"
+              width={643}
+              height={254}
+              style={{ height: 'clamp(40px, 5vw, 60px)', width: 'auto', display: 'block', filter: 'brightness(0) invert(1)' }}
+            />
+            <p style={{ fontFamily: 'var(--font-display)', fontStyle: 'italic', fontWeight: 300, fontSize: '1.15rem', color: 'rgba(255,255,255,0.7)', margin: '1.25rem 0 0', maxWidth: '360px' }}>
+              Form follows feeling. A multidisciplinary studio building brands, spaces and systems that endure.
+            </p>
           </div>
-          {/* Vertical tagline */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-            <span style={{ fontFamily: 'var(--font-display)', fontStyle: 'italic', fontSize: '1rem', fontWeight: 300, color: 'rgba(255,255,255,0.65)' }}>
-              Form follows feeling.
+
+          <a
+            href="#contact"
+            style={{
+              backgroundColor: 'white', color: '#383ce5',
+              fontFamily: 'var(--font-bold)', fontWeight: 700,
+              fontSize: '0.75rem', letterSpacing: '0.15em', textTransform: 'uppercase',
+              padding: '1.1rem 2rem', textDecoration: 'none', transition: 'opacity 0.2s',
+            }}
+            onMouseEnter={e => (e.currentTarget.style.opacity = '0.9')}
+            onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
+          >
+            Start a project →
+          </a>
+        </motion.div>
+
+        {/* Link columns + contact info */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.1 }}
+          className="footer-cols"
+          style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '2.5rem', padding: '3.5rem 0' }}
+        >
+          {columns.map((col) => (
+            <div key={col.title}>
+              <span style={{ display: 'block', fontFamily: 'var(--font-mono)', fontSize: '0.6rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', marginBottom: '1.25rem' }}>
+                {col.title}
+              </span>
+              <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: '0.7rem' }}>
+                {col.links.map((link) => (
+                  <li key={link}>
+                    <a
+                      href="#"
+                      style={{ fontFamily: 'var(--font-sans)', fontWeight: 300, fontSize: '0.95rem', color: 'rgba(255,255,255,0.8)', textDecoration: 'none', transition: 'color 0.2s' }}
+                      onMouseEnter={e => (e.currentTarget.style.color = '#8f92ff')}
+                      onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.8)')}
+                    >
+                      {link}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+
+          {/* Contact info column */}
+          <div>
+            <span style={{ display: 'block', fontFamily: 'var(--font-mono)', fontSize: '0.6rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', marginBottom: '1.25rem' }}>
+              Get in touch
             </span>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.7rem' }}>
+              <a href="mailto:hello@blueismstudio.com" style={{ fontFamily: 'var(--font-sans)', fontWeight: 300, fontSize: '0.95rem', color: 'rgba(255,255,255,0.8)', textDecoration: 'none' }}>
+                hello@blueismstudio.com
+              </a>
+              <a href="tel:+212600000000" style={{ fontFamily: 'var(--font-sans)', fontWeight: 300, fontSize: '0.95rem', color: 'rgba(255,255,255,0.8)', textDecoration: 'none' }}>
+                +212 6 00 00 00 00
+              </a>
+              <span style={{ fontFamily: 'var(--font-sans)', fontWeight: 300, fontSize: '0.95rem', color: 'rgba(255,255,255,0.6)', lineHeight: 1.6 }}>
+                Casablanca, Morocco<br />الدار البيضاء · Remote worldwide
+              </span>
+            </div>
           </div>
+        </motion.div>
+
+        {/* Bottom bar */}
+        <div style={{ paddingTop: '2rem', borderTop: '1px solid rgba(255,255,255,0.15)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.65rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)' }}>
+            © 2025 Blueism Studio. All rights reserved.
+          </span>
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.65rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)' }}>
+            Built with intention.
+          </span>
         </div>
       </div>
 
-      {/* Main content */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-        style={{ maxWidth: '1400px', margin: '0 auto', padding: '4rem 2rem 3rem' }}
-      >
-        {/* CTA + email */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', paddingBottom: '3rem', borderBottom: '1px solid var(--border)', alignItems: 'end' }}>
-          <div>
-            <span className="label" style={{ display: 'block', marginBottom: '1rem' }}>[ 06 ] — Let&apos;s work together</span>
-            <h2 style={{
-              fontFamily: 'var(--font-bold)',
-              fontWeight: 700,
-              fontSize: 'clamp(2.5rem, 5vw, 5rem)',
-              letterSpacing: '0.02em',
-              textTransform: 'uppercase',
-              lineHeight: 0.95,
-              color: 'var(--foreground)',
-              margin: 0,
-            }}>
-              Start a<br />
-              <span style={{ color: '#383ce5' }}>conversation.</span>
-            </h2>
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', justifyContent: 'flex-end' }}>
-            <a
-              href="mailto:hello@blueismstudio.com"
-              style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: 'clamp(1.1rem, 2vw, 1.75rem)',
-                fontWeight: 400,
-                fontStyle: 'italic',
-                color: 'var(--foreground)',
-                textDecoration: 'none',
-                borderBottom: '1px solid var(--border)',
-                paddingBottom: '0.5rem',
-                transition: 'color 0.2s, border-color 0.2s',
-              }}
-              onMouseEnter={e => { e.currentTarget.style.color = '#383ce5'; e.currentTarget.style.borderColor = '#383ce5' }}
-              onMouseLeave={e => { e.currentTarget.style.color = 'var(--foreground)'; e.currentTarget.style.borderColor = 'var(--border)' }}
-            >
-              hello@blueismstudio.com
-            </a>
-            <p className="label">We&apos;re interested in meaningful projects that challenge our thinking.</p>
-          </div>
-        </div>
-
-        {/* Social + location */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1, duration: 0.7 }}
-          style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '2rem 0', borderBottom: '1px solid var(--border)', flexWrap: 'wrap', gap: '1rem' }}
-        >
-          <div style={{ display: 'flex', gap: '2.5rem' }}>
-            {['Instagram', 'Behance', 'LinkedIn'].map(platform => (
-              <a
-                key={platform}
-                href="#"
-                style={{
-                  fontFamily: 'var(--font-bold)',
-                  fontWeight: 600,
-                  fontSize: '0.7rem',
-                  letterSpacing: '0.12em',
-                  textTransform: 'uppercase',
-                  color: 'var(--foreground)',
-                  textDecoration: 'none',
-                  transition: 'color 0.2s',
-                }}
-                onMouseEnter={e => (e.currentTarget.style.color = '#383ce5')}
-                onMouseLeave={e => (e.currentTarget.style.color = 'var(--foreground)')}
-              >
-                {platform}
-              </a>
-            ))}
-          </div>
-          <span className="label">Casablanca, Morocco · الدار البيضاء · Remote</span>
-        </motion.div>
-
-        {/* Copyright */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2, duration: 0.6 }}
-          style={{ paddingTop: '2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}
-        >
-          <span className="label">© 2025 Blueism Studio. All rights reserved.</span>
-          {/* Small square logo mark at end */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-            <span className="label">Built with intention.</span>
-            <div style={{ width: '20px', height: '20px', backgroundColor: '#383ce5', overflow: 'hidden' }}>
-              <Image src="/logo.png" alt="" width={20} height={20} style={{ width: '100%', height: '100%', objectFit: 'cover' }} aria-hidden />
-            </div>
-          </div>
-        </motion.div>
-      </motion.div>
+      <style>{`
+        @media (max-width: 860px) {
+          .footer-cols { grid-template-columns: repeat(2, 1fr) !important; gap: 2.5rem 1.5rem !important; }
+        }
+      `}</style>
     </footer>
   )
 }

@@ -49,7 +49,7 @@ export default function Hero() {
   // Title recedes into the page as you scroll away from the hero.
   const titleY = useTransform(scrollYProgress, [0, 1], [0, -120])
   const titleScale = useTransform(scrollYProgress, [0, 1], [1, 0.8])
-  const titleRotateScroll = useTransform(scrollYProgress, [0, 1], [0, 20])
+  const titleRotateScroll = useTransform(scrollYProgress, [0, 1], [0, 8])
   const titleOpacity = useTransform(scrollYProgress, [0, 0.65], [1, 0])
   const barOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0])
   const barY = useTransform(scrollYProgress, [0, 1], [0, 60])
@@ -60,8 +60,8 @@ export default function Hero() {
   /* ---------- Pointer-driven 3D tilt ---------- */
   const px = useMotionValue(0)
   const py = useMotionValue(0)
-  const rotY = useSpring(useTransform(px, [-0.5, 0.5], [14, -14]), { stiffness: 140, damping: 18, mass: 0.4 })
-  const rotX = useSpring(useTransform(py, [-0.5, 0.5], [-10, 10]), { stiffness: 140, damping: 18, mass: 0.4 })
+  const rotY = useSpring(useTransform(px, [-0.5, 0.5], [6, -6]), { stiffness: 90, damping: 22, mass: 0.5 })
+  const rotX = useSpring(useTransform(py, [-0.5, 0.5], [-4, 4]), { stiffness: 90, damping: 22, mass: 0.5 })
   // Slight counter-shift on the video so the layers separate in depth.
   const bgShiftX = useSpring(useTransform(px, [-0.5, 0.5], [18, -18]), { stiffness: 80, damping: 20 })
   const bgShiftY = useSpring(useTransform(py, [-0.5, 0.5], [12, -12]), { stiffness: 80, damping: 20 })
@@ -77,7 +77,7 @@ export default function Hero() {
     py.set(0)
   }
 
-  const letters = 'BLUEISM'.split('')
+  const letters = 'Blueism.'.split('')
 
   return (
     <section
@@ -183,20 +183,20 @@ export default function Hero() {
               fontSize: 'clamp(4rem, 16vw, 15rem)',
               lineHeight: 0.82,
               letterSpacing: '-0.03em',
-              textTransform: 'uppercase',
+              // textTransform: 'uppercase',
               color: 'var(--primary)',
               margin: 0,
               display: 'flex',
             }}
           >
-            {/* Extra scroll-driven forward tilt on the whole word */}
+            {/* Calm reveal — letters fade and settle gently, no flip */}
             <motion.span style={{ rotateX: titleRotateScroll, transformStyle: 'preserve-3d', display: 'flex' }}>
               {letters.map((c, i) => (
                 <motion.span
                   key={i}
-                  initial={{ rotateX: -95, opacity: 0, y: 60 }}
-                  animate={{ rotateX: 0, opacity: 1, y: 0 }}
-                  transition={{ delay: 0.25 + i * 0.075, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+                  initial={{ opacity: 0, y: 18 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 + i * 0.09, duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
                   style={{ display: 'inline-block', transformOrigin: 'bottom center', transformStyle: 'preserve-3d' }}
                 >
                   {c}

@@ -101,7 +101,7 @@ export default function Services() {
         }}
       />
 
-      <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '5rem 2rem 2.5rem', position: 'relative', zIndex: 2 }}>
+      <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '7rem 2rem 4.5rem', position: 'relative', zIndex: 2 }}>
 
         {/* ===== INTRO — "WE CREATE?" pointer header ===== */}
         <WeCreateHeader />
@@ -175,7 +175,7 @@ export default function Services() {
         </div>
 
         {/* ===== Service blocks ===== */}
-        <div style={{ marginTop: '0.5rem' }}>
+        <div style={{ marginTop: '2.5rem' }}>
           {services.map((s, i) => (
             <ServiceBlock
               key={s.slug}
@@ -190,14 +190,15 @@ export default function Services() {
 
       <style>{`
         .svc-hero-row {
+          position: relative;
           display: grid;
           grid-template-columns: 0.9fr 1.6fr;
           align-items: center;
           gap: 1.5rem;
           margin-top: 1.5rem;
-          padding-top: 1.25rem;
-          border-top: 1px solid var(--border);
+          padding-top: 1.5rem;
         }
+        /* No divider above the main SERVICES header. */
         .svc-bigtitle {
           font-family: var(--font-bold);
           font-weight: 700;
@@ -263,14 +264,36 @@ export default function Services() {
 
         /* Service block layout */
         .svc-block {
+          position: relative;
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 1.75rem;
+          gap: 2.5rem;
           align-items: stretch;
           min-height: 380px;
-          padding: 1.5rem 0 2rem;
-          border-top: 3px solid rgba(56,60,229,0.3);
+          padding: 3rem 0 3.5rem;
           scroll-margin-top: 96px;
+        }
+        /* Simple overline sitting directly on top of each category header text.
+           inline-block hugs the text so the rule matches the title's width. */
+        .svc-cat-title {
+          position: relative;
+          display: inline-block;
+          padding-top: 0.85rem;
+        }
+        .svc-cat-title::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 100vw;
+          height: 2px;
+          background: #383ce5;
+        }
+        /* Reversed blocks sit on the right — their overline comes in from the
+           right screen edge instead, anchored to the title's left edge. */
+        .svc-block.reverse .svc-cat-title::before {
+          right: auto;
+          left: 0;
         }
         .svc-block-text {
           display: flex;
@@ -478,6 +501,7 @@ function ServiceBlock({ service, index, reverse, onActive }: { service: Service;
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="svc-cat-title"
           style={{
             fontFamily: 'var(--font-bold)', fontWeight: 700,
             fontSize: 'clamp(2.25rem, 5.5vw, 4.5rem)',
