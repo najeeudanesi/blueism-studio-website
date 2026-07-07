@@ -105,5 +105,26 @@ export const projects: Project[] = [
       'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=900&q=80',
       'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=900&q=80'
     ]
+  },
+  {
+    slug: 'suits',
+    number: '06',
+    title: 'SUITS',
+    discipline: 'Brand Identity & Product Design',
+    year: '2025',
+    location: 'Paris, France',
+    image: 'https://i.ibb.co/Q3LDPmk6/Whats-App-Image-2025-05-26-at-20-48-02.jpg',
+    tall: true,
+    description: 'An olfactory extension of modern tailoring. SUITS translates the structural precision, material weight, and clean lines of bespoke sartorial craft into a high-end conceptual fragrance.',
+    challenge: 'Expressing the physical presence, wool texture, and sharp geometry of custom suits in a liquid fragrance bottle design.',
+    approach: 'We developed a monolithic glass bottle featuring sharp 90-degree corners, wrapped in a tactile textured sleeve resembling premium suit fabric, capped with a heavy brushed-metal lid.',
+    result: 'A highly acclaimed concept showcase that redefines fashion-fragrance crossover, featuring minimalist editorial typography and raw product presentation.',
+    gallery: [
+      'https://i.ibb.co/Q3LDPmk6/Whats-App-Image-2025-05-26-at-20-48-02.jpg',
+      'https://i.ibb.co/qYPswHNs/Whats-App-Image-2025-05-26-at-20-48-02-1.jpg',
+      'https://i.ibb.co/vCvqP9q2/01-Whats-App-Image-2025-05-26-at-20-48-01-2.jpg',
+      'https://i.ibb.co/j92YyzPk/Whats-App-Image-2025-05-26-at-20-48-01-3.jpg'
+    ]
   }
 ]
+
