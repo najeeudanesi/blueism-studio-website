@@ -22,16 +22,17 @@ export const projects: Project[] = [
     discipline: 'Interior Architecture',
     year: '2024',
     location: 'Casablanca, Morocco',
-    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=85',
+    image: 'https://i.ibb.co/HfTQvR59/Whats-App-Image-2025-05-26-at-20-52-54-1.jpg',
     tall: true,
-    description: 'A residential space designed as an architectural haven of raw concrete and filtered light. Our goal was to create a quiet sanctuary from the bustling city outside.',
-    challenge: 'Balancing the inherent coldness of structural raw concrete with warm, inviting residential living spaces while maintaining a strict minimalist layout.',
-    approach: 'We introduced hand-crafted warm cedar wood panels and strategic light wells that cast moving shadows throughout the day, altering the spatial mood dynamically.',
-    result: 'A light-filled, 450-square-meter sanctuary that feels both monolithic and intimate, celebrating local Moroccan textures with a modern architectural syntax.',
+    description: 'A residential space designed as an architectural haven of raw concrete and filtered light. — مساحة سكنية مصممة كملاذ معماري من الخرسانة الخام والضوء المصفى.',
+    challenge: 'Balancing the inherent coldness of structural raw concrete with warm, inviting residential living spaces while maintaining a strict minimalist layout. — موازنة البرودة الكامنة في الخرسانة الخام مع مساحات معيشة دافئة وجذابة مع الحفاظ على تصميم مبسط وصارم.',
+    approach: 'We introduced hand-crafted warm cedar wood panels and strategic light wells that cast moving shadows throughout the day, altering the spatial mood dynamically. — قمنا بدمج ألواح خشب الأرز الدافئة المصنوعة يدويًا ومناور استراتيجية تلقي بظلال متحركة طوال اليوم، مما يغير الحالة المزاجية للمكان ديناميكيًا.',
+    result: 'A light-filled, 450-square-meter sanctuary that feels both monolithic and intimate, celebrating local Moroccan textures with a modern architectural syntax. — ملاذ مليء بالضوء بمساحة ٤٥٠ مترًا مربعًا يجمع بين الطابع المترابط والحميمي، ويحتفي بالأسطح المغربية المحلية بلغة معمارية حديثة.',
     gallery: [
-      'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=900&q=80',
-      'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=900&q=80',
-      'https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?w=900&q=80'
+      'https://i.ibb.co/HfTQvR59/Whats-App-Image-2025-05-26-at-20-52-54-1.jpg',
+      'https://i.ibb.co/BDGqPjv/Whats-App-Image-2025-05-26-at-20-52-54-4.jpg',
+      'https://i.ibb.co/6cFdz86Q/Whats-App-Image-2025-05-26-at-20-52-54-2.jpg',
+      'https://i.ibb.co/QvPXyQ38/Whats-App-Image-2025-05-26-at-20-52-53.jpg'
     ]
   },
   {
@@ -52,24 +53,7 @@ export const projects: Project[] = [
       'https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?w=900&q=80'
     ]
   },
-  {
-    slug: 'still-objects',
-    number: '03',
-    title: 'Still Objects',
-    discipline: 'Product Design',
-    year: '2023',
-    location: 'Milan, Italy',
-    image: 'https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=1600&q=85',
-    tall: false,
-    description: 'A collection of tabletop items designed to invite mindfulness and tactile presence into daily life.',
-    challenge: 'Designing functional objects that maintain an artistic, silent presence when not in active use.',
-    approach: 'Using sand-cast aluminum, raw volcanic stone, and mouth-blown glass, we crafted simple geometric shapes that emphasize weight and texture.',
-    result: 'A series of 5 core pieces presented at Milan Design Week, receiving critical acclaim for tactile materiality and honest geometry.',
-    gallery: [
-      'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=900&q=80',
-      'https://images.unsplash.com/photo-1538688525198-9b88f6f53126?w=900&q=80'
-    ]
-  },
+
   {
     slug: 'digital-surface',
     number: '04',
@@ -110,7 +94,7 @@ export const projects: Project[] = [
     slug: 'suits',
     number: '06',
     title: 'SUITS',
-    discipline: 'Brand Identity & Product Design',
+    discipline: 'Product Design',
     year: '2025',
     location: 'Paris, France',
     image: 'https://i.ibb.co/Q3LDPmk6/Whats-App-Image-2025-05-26-at-20-48-02.jpg',
@@ -124,6 +108,26 @@ export const projects: Project[] = [
       'https://i.ibb.co/qYPswHNs/Whats-App-Image-2025-05-26-at-20-48-02-1.jpg',
       'https://i.ibb.co/vCvqP9q2/01-Whats-App-Image-2025-05-26-at-20-48-01-2.jpg',
       'https://i.ibb.co/j92YyzPk/Whats-App-Image-2025-05-26-at-20-48-01-3.jpg'
+    ]
+  },
+  {
+    slug: 'manarah',
+    number: '07',
+    title: 'MANARAH',
+    discipline: 'Product Design',
+    year: '2025',
+    location: 'Dubai, UAE',
+    image: 'https://i.ibb.co/7NS8fV9x/Whats-App-Image-2025-05-26-at-20-48-01.jpg',
+    tall: true,
+    description: 'An exploration in product design focused on minimalist forms, warm textures, and illuminating modern spaces.',
+    challenge: 'Designing a physical product that balances bold aesthetic presence with functional simplicity and ergonomic comfort.',
+    approach: 'We utilized sleek, timeless materials and geometric precision to craft an object that feels both grounded and weightless.',
+    result: 'A versatile and tactile product that seamlessly integrates into contemporary environments, celebrating the essence of pure design.',
+    gallery: [
+      'https://i.ibb.co/7NS8fV9x/Whats-App-Image-2025-05-26-at-20-48-01.jpg',
+      'https://i.ibb.co/7NS8fV9x/Whats-App-Image-2025-05-26-at-20-48-01.jpg',
+      'https://i.ibb.co/7NS8fV9x/Whats-App-Image-2025-05-26-at-20-48-01.jpg',
+      'https://i.ibb.co/7NS8fV9x/Whats-App-Image-2025-05-26-at-20-48-01.jpg'
     ]
   }
 ]
