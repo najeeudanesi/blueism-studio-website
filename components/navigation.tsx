@@ -1,170 +1,57 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import Link from 'next/link'
 import Image from 'next/image'
+import { motion } from 'framer-motion'
+import { EASE, Magnetic, RollLabel, useSiteReady } from './motion'
 
+const LINKS = [
+  { label: 'About us', href: '#about' },
+  { label: 'Services', href: '#services' },
+  { label: 'Journal', href: '#work' },
+  { label: 'Contact', href: '#contact' },
+]
+
+/**
+ * Fixed nav that recolors itself via CSS vars as section themes flip
+ * (blue sections → white text, light sections → blue text).
+ */
 export default function Navigation() {
-  const [isOpen, setIsOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40)
-    window.addEventListener('scroll', onScroll)
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
-
-  const links = [
-    { label: 'Information', href: '#philosophy' },
-    { label: 'Services', href: '#services' },
-    { label: 'Work', href: '#work' },
-    { label: 'Blog', href: '#footer' },
-    { label: 'Contact Us', href: '#contact' },
-  ]
+  const { ready } = useSiteReady()
 
   return (
-    <nav
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 50,
-        borderBottom: scrolled ? '1px solid var(--border)' : '1px solid transparent',
-        backgroundColor: scrolled ? 'rgba(255,254,236,0.96)' : 'transparent',
-        backdropFilter: scrolled ? 'blur(8px)' : 'none',
-        transition: 'all 0.4s ease',
-      }}
+    <motion.header
+      initial={{ y: -24, opacity: 0 }}
+      animate={ready ? { y: 0, opacity: 1 } : {}}
+      transition={{ duration: 0.9, delay: 0.8, ease: EASE }}
+      className="fixed inset-x-0 top-0 z-50"
+      style={{ color: 'var(--nav-fg)', transition: 'color 0.5s ease' }}
     >
-      <div
-        className="px-6 md:px-16"
-        style={{
-          width: '100%',
-          // Starts compact, then grows once scrolled past the hero.
-          height: scrolled ? '77px' : '62px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          boxSizing: 'border-box',
-          transition: 'height 0.4s ease',
-        }}
-      >
-
-        {/* Logo — official Blueism Studio wordmark */}
-        <a
-          href="#"
-          aria-label="Blueism Studio — home"
-          style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}
-        >
-          <Image
-            src="/logo-wordmark.png"
-            alt="Blueism Studio"
-            width={643}
-            height={254}
-            priority
-            style={{
-              // Starts smaller, then grows once scrolled past the hero.
-              height: scrolled ? '35px' : '28px',
-              width: 'auto',
-              display: 'block',
-              transition: 'height 0.4s ease',
-              // Keep the brand mark blue in every state (over hero + scrolled)
-              filter: 'none',
-            }}
-          />
-        </a>
-
-        {/* Desktop Links (Spaced evenly across navigation) */}
-        <div style={{ display: 'flex', gap: 'clamp(1.5rem, 5vw, 6rem)', alignItems: 'center' }} className="hidden md:flex">
-          {links.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              style={{
-                fontFamily: 'var(--font-bold)',
-                // Starts smaller, then grows once scrolled past the hero.
-                fontSize: scrolled ? '0.72rem' : '0.68rem',
-                fontWeight: 600,
-                letterSpacing: '0.05em',
-                transition: 'color 0.2s ease, font-size 0.4s ease',
-                fontStyle: link.label === 'Contact Us' ? 'italic' : 'normal',
-                color: scrolled ? 'var(--foreground)' : 'rgba(255,255,255,0.8)',
-                textDecoration: 'none',
-              }}
-              onMouseEnter={e => (e.currentTarget.style.color = scrolled ? 'var(--primary)' : '#FFFFFF')}
-              onMouseLeave={e => (e.currentTarget.style.color = scrolled ? 'var(--foreground)' : 'rgba(255,255,255,0.8)')}
-            >
-              {link.label}
-            </a>
+      <nav className="mx-auto flex h-16 max-w-[1600px] items-center justify-between px-5 md:px-10">
+        <Magnetic strength={0.25}>
+          <Link href="/" className="flex items-center" aria-label="Blueism home">
+            <Image
+              src="/OFFICIAL-LOGO-BLUEISM-ICON.png"
+              alt=""
+              width={30}
+              height={30}
+              style={{ filter: 'var(--nav-logo-filter)', transition: 'filter 0.5s ease' }}
+            />
+          </Link>
+        </Magnetic>
+        <ul className="hidden items-center gap-10 md:flex">
+          {LINKS.map((l) => (
+            <li key={l.label}>
+              <Link href={l.href} className="text-[0.8rem] font-600 tracking-wide">
+                <RollLabel>{l.label}</RollLabel>
+              </Link>
+            </li>
           ))}
-        </div>
-
-        {/* Mobile hamburger */}
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '8px', zIndex: 60 }}
-          className="md:hidden"
-          aria-label="Toggle menu"
-        >
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-            <span style={{ 
-              display: 'block', 
-              width: '24px', 
-              height: '2px', 
-              backgroundColor: isOpen ? (scrolled ? 'var(--foreground)' : '#FFFFFF') : (scrolled ? 'var(--foreground)' : '#FFFFFF'),
-              transform: isOpen ? 'rotate(45deg) translate(5px, 6px)' : 'none',
-              transition: 'all 0.3s ease' 
-            }} />
-            <span style={{ 
-              display: 'block', 
-              width: '24px', 
-              height: '2px', 
-              backgroundColor: isOpen ? (scrolled ? 'var(--foreground)' : '#FFFFFF') : (scrolled ? 'var(--foreground)' : '#FFFFFF'),
-              transform: isOpen ? 'rotate(-45deg) translate(5px, -6px)' : 'none',
-              transition: 'all 0.3s ease' 
-            }} />
-          </div>
-        </button>
-      </div>
-
-      {/* Mobile Menu Drawer */}
-      {isOpen && (
-        <div style={{ 
-          position: 'absolute',
-          top: '100%',
-          left: 0,
-          right: 0,
-          backgroundColor: scrolled ? 'rgba(255,254,236,0.98)' : 'rgba(13,13,13,0.98)',
-          backdropFilter: 'blur(10px)',
-          borderBottom: '1px solid var(--border)',
-          padding: '2rem 1.5rem', 
-          display: 'flex', 
-          flexDirection: 'column', 
-          gap: '1.5rem',
-          boxShadow: '0 10px 30px rgba(0,0,0,0.1)'
-        }}>
-          {links.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              onClick={() => setIsOpen(false)}
-              style={{ 
-                fontFamily: 'var(--font-bold)', 
-                fontSize: '1.25rem', 
-                fontWeight: 700, 
-                letterSpacing: '0.1em', 
-                textTransform: 'uppercase', 
-                color: scrolled ? 'var(--foreground)' : '#FFFFFF', 
-                textDecoration: 'none',
-                transition: 'opacity 0.2s ease'
-              }}
-              onMouseEnter={e => (e.currentTarget.style.opacity = '0.7')}
-              onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
-            >
-              {link.label}
-            </a>
-          ))}
-        </div>
-      )}
-    </nav>
+        </ul>
+        <Link href="#contact" className="text-xs font-bold md:hidden">
+          Contact
+        </Link>
+      </nav>
+    </motion.header>
   )
 }

@@ -3,18 +3,11 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-heading: var(--font-display);
-  --font-display: var(--font-display);
-  --font-sans: var(--font-roboto), 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-  --font-mono: var(--font-geist-mono), 'Geist Mono Fallback';
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
+  --font-sans: var(--font-nunito), 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  --font-display: var(--font-nunito), 'Segoe UI', sans-serif;
+  --font-numeral: var(--font-anton), 'Arial Narrow', sans-serif;
+  --font-grotesk: var(--font-archivo), 'Arial Black', sans-serif;
+  --font-serif: var(--font-serif-italic), Georgia, serif;
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
@@ -26,54 +19,55 @@
   --color-secondary: var(--secondary);
   --color-primary-foreground: var(--primary-foreground);
   --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
   --color-foreground: var(--foreground);
   --color-background: var(--background);
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
+  --color-blue: var(--blue);
+  --color-ink: var(--ink);
+  --color-hero-gray: var(--hero-gray);
+  --color-giant-gray: var(--giant-gray);
+  --radius-house: 20px;
 }
 
 :root {
   color-scheme: light;
-  /* Typography — Impact display headings, Roboto body */
-  --font-impact: 'Impact', 'Haettenschweiler', 'Franklin Gothic Bold', 'Arial Narrow Bold', sans-serif;
-  --font-bold: var(--font-impact);
-  /* Artboard palette */
-  --background: #FFFEEC;
-  --foreground: #0D0D0D;
-  --ink: #0D0D0D;
-  --cream: #FFFEEC;
-  --cream-dark: #F4F2D8;
-  --card: #FFFEEC;
-  --card-foreground: #0D0D0D;
-  --popover: #FFFEEC;
-  --popover-foreground: #0D0D0D;
-  --primary: #383ce5;
-  --primary-foreground: #F5F3EE;
-  --secondary: #5C5C5C;
-  --secondary-foreground: #F5F3EE;
-  --muted: #E8E5DD;
-  --muted-foreground: #888880;
-  --accent: #383ce5;
-  --accent-foreground: #F5F3EE;
-  --destructive: #FF4444;
-  --border: #D0CCC2;
-  --input: #D0CCC2;
-  --ring: #383ce5;
-  --radius: 0rem;
-  --sidebar: #FFFEEC;
-  --sidebar-foreground: #0D0D0D;
-  --sidebar-primary: #0D0D0D;
-  --sidebar-primary-foreground: #F5F3EE;
-  --sidebar-accent: #E8E5DD;
-  --sidebar-accent-foreground: #0D0D0D;
-  --sidebar-border: #D0CCC2;
-  --sidebar-ring: #383ce5;
+  /* Sampled from the design file */
+  --blue: #383ce5;
+  --blue-soft: #6063ea; /* squiggle stroke */
+  --select-box: #d7d7eb; /* WE CREATE? selection highlight */
+  --hero-gray: #d4d5db;
+  --giant-gray: #bdbdbd;
+  --ink: #0a0a0a;
+
+  --background: #ffffff;
+  --foreground: #0a0a0a;
+  --card: #ffffff;
+  --card-foreground: #0a0a0a;
+  --primary: var(--blue);
+  --primary-foreground: #ffffff;
+  --secondary: #5c5c5c;
+  --secondary-foreground: #ffffff;
+  --muted: #f2f2f2;
+  --muted-foreground: #8a8a8a;
+  --accent: var(--blue);
+  --accent-foreground: #ffffff;
+  --destructive: #ff1e00;
+  --border: #e4e4e4;
+  --input: #e4e4e4;
+  --ring: var(--blue);
+  --radius: 20px;
+
+  /* Nav theme vars — rewritten by section theme classes below */
+  --nav-fg: var(--blue);
+  --nav-logo-filter: none;
+}
+
+/* Section-driven global theming (Lusion pattern: html class flips, CSS transitions do the rest) */
+html.theme-blue,
+html.theme-dark {
+  --nav-fg: #ffffff;
+  --nav-logo-filter: brightness(0) invert(1);
 }
 
 @layer base {
@@ -84,149 +78,227 @@
 
   html {
     @apply font-sans;
-    scroll-behavior: smooth;
+  }
+
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  /* Hide native scrollbar — a custom Lusion-style thumb replaces it */
+  html {
+    scrollbar-width: none;
+  }
+  body::-webkit-scrollbar {
+    display: none;
   }
 
   body {
-    @apply bg-background text-foreground;
     background-color: var(--background);
     color: var(--foreground);
-    /* Subtle grain texture via repeating SVG noise */
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background: var(--blue);
+    color: #fff;
   }
 }
 
-/* =====================
-   ARTBOARD UTILITIES
-   ===================== */
+/* ============ BLUEISM / LUSION UTILITIES ============ */
 
-/* Grayscale image — applied to all images for B&W feel */
-.img-bw {
-  filter: grayscale(100%) contrast(1.05);
-  transition: filter 0.5s ease;
-}
-
-.img-bw:hover {
-  filter: grayscale(0%) contrast(1);
-}
-
-/* For images that should stay B&W on hover */
-.img-bw-fixed {
-  filter: grayscale(100%) contrast(1.05);
-}
-
-/* Section label (small uppercase monospaced) */
-.label {
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--secondary);
-}
-
-/* Thin ruled line */
-.ruled {
-  border-top: 1px solid var(--border);
-}
-
-/* Registration mark / corner mark */
-.reg-mark {
-  position: absolute;
-  width: 12px;
-  height: 12px;
-  border-color: var(--border);
-  border-style: solid;
-}
-
-.reg-mark-tl { top: 0; left: 0; border-width: 1px 0 0 1px; }
-.reg-mark-tr { top: 0; right: 0; border-width: 1px 1px 0 0; }
-.reg-mark-bl { bottom: 0; left: 0; border-width: 0 0 1px 1px; }
-.reg-mark-br { bottom: 0; right: 0; border-width: 0 1px 1px 0; }
-
-/* Display heading utility */
-.heading-display {
-  font-family: var(--font-display);
-  font-weight: 400;
-  line-height: 1;
-  letter-spacing: -0.02em;
-}
-
-/* Dark section (ink black) */
-.section-ink {
-  background-color: var(--ink);
-  color: var(--cream);
-}
-
-/* Artboard dot grid pattern */
-.dot-grid {
-  background-image: radial-gradient(circle, rgba(0,0,0,0.08) 1px, transparent 1px);
-  background-size: 24px 24px;
-}
-
-/* =====================
-   WORK / SELECTED GRID
-   Consistent grid foundation: uniform columns + gutters.
-   A few items span extra columns/rows for rhythm.
-   ===================== */
-.work-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 280px;
-  grid-auto-flow: row dense;
-  gap: 1.5rem;
-}
-
-/* Spanning items — the only deviations from the uniform cell */
-.work-feature { grid-column: span 2; grid-row: span 2; }
-.work-wide    { grid-column: span 2; }
-
-/* Card internals fill their grid cell */
-.work-card {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-.work-card-media {
-  position: relative;
-  flex: 1 1 auto;
-  min-height: 0;
+/* Masked reveal container */
+.mask-line {
+  display: block;
   overflow: hidden;
+  padding-bottom: 0.12em; /* keep descenders during rotate */
+  margin-bottom: -0.12em;
+}
+.mask-line > * {
+  display: block;
+  will-change: transform;
 }
 
-@media (max-width: 900px) {
-  .work-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 260px; }
-  /* feature + wide both become full-width-of-two bands */
-  .work-feature { grid-column: span 2; grid-row: span 2; }
-  .work-wide    { grid-column: span 2; }
+/* Giant service words */
+.giant-word {
+  font-family: var(--font-nunito), sans-serif;
+  font-weight: 900;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  font-size: clamp(3.6rem, 12.5vw, 11.5rem);
 }
 
-@media (max-width: 600px) {
-  .work-grid { grid-template-columns: 1fr; grid-auto-rows: auto; gap: 1.25rem; }
-  .work-feature,
-  .work-wide { grid-column: span 1; grid-row: span 1; }
-  .work-card-media { flex: none; height: 300px; }
-  .work-feature .work-card-media { height: 360px; }
+/* Small uppercase meta label */
+.meta-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 700;
 }
 
-/* =====================
-   RESPONSIVE OVERRIDES
-   ===================== */
+/* ---- Dual-label roll hover (Lusion's dominant link hover) ---- */
+.roll-link {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  line-height: 1.2;
+}
+.roll-link .roll-a,
+.roll-link .roll-b {
+  display: block;
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.roll-link .roll-b {
+  position: absolute;
+  inset: 0;
+  transform: translate3d(0, 100%, 0);
+}
+.roll-link:hover .roll-a,
+.roll-link:focus-visible .roll-a {
+  transform: translate3d(0, -100%, 0);
+}
+.roll-link:hover .roll-b,
+.roll-link:focus-visible .roll-b {
+  transform: translate3d(0, 0, 0);
+}
+
+/* ---- Dot-flood pill CTA ---- */
+.pill-cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7em;
+  padding: 0.9em 2em;
+  border-radius: 999px;
+  background: #eeeef4;
+  color: var(--ink);
+  font-weight: 800;
+  font-size: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  cursor: pointer;
+  transition: color 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.pill-cta .pill-dot {
+  width: 0.55em;
+  height: 0.55em;
+  border-radius: 999px;
+  background: var(--blue);
+  flex: none;
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.pill-cta .pill-label {
+  position: relative;
+  z-index: 1;
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.pill-cta:hover {
+  color: #fff;
+}
+.pill-cta:hover .pill-dot {
+  transform: translate3d(2.5em, 0, 0) scale(26);
+}
+.pill-cta:hover .pill-label {
+  transform: translate3d(-1.1em, 0, 0);
+}
+
+/* ---- Rectangular hero button (per design) ---- */
+.btn-rect {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.7rem 1.6rem;
+  background: #fff;
+  color: var(--blue);
+  font-weight: 700;
+  font-size: 0.85rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+  transition:
+    background 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.btn-rect:hover {
+  background: var(--blue);
+  color: #fff;
+}
+
+/* ---- Scroll hint: slow weightless float instead of a mechanical nudge ---- */
+@keyframes nudge {
+  0% {
+    transform: translateY(0);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translateY(0.7em);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 0.55;
+  }
+}
+.nudge {
+  animation: nudge 3.2s ease-in-out infinite;
+}
+
+/* ---- Dream grain: faint static noise veil over everything ---- */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  pointer-events: none;
+  opacity: 0.028;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---- Custom scrollbar ---- */
+.scrollbar-track {
+  position: fixed;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 5px;
+  height: 22vh;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.08);
+  z-index: 90;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.scrollbar-track.is-scrolling {
+  opacity: 1;
+}
+.scrollbar-thumb {
+  width: 100%;
+  height: 28%;
+  border-radius: 999px;
+  background: var(--blue);
+}
+
+/* Hide custom cursor on touch */
+@media (pointer: coarse) {
+  .custom-cursor {
+    display: none;
+  }
+}
+
 @media (max-width: 768px) {
-  /* All grid-template-columns grids collapse to 1 col */
-  [style*="grid-template-columns"] {
-    grid-template-columns: 1fr !important;
-  }
-  /* Reduce giant type on mobile */
-  [style*="clamp(4rem"] {
-    font-size: clamp(3rem, 12vw, 5rem) !important;
-  }
-  /* Reduce hero heading */
-  h1 {
-    font-size: clamp(3rem, 14vw, 8rem) !important;
-  }
-  /* Paddings */
   section {
     padding-left: 1.25rem !important;
     padding-right: 1.25rem !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nudge {
+    animation: none;
   }
 }
