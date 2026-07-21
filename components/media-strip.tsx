@@ -3,17 +3,17 @@
 import { useCallback, useEffect, useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useSectionTheme } from './motion'
+import WaterOverlay from './water-overlay'
 
 /**
  * Full-bleed video showcase. The section is tall and its visual is pinned
  * (sticky), so it stays locked in place while you scroll through it. The
  * office-vr clip is *scrubbed* by scroll — its currentTime is tagged to scroll
  * progress, so it plays forward as you scroll down and rewinds as you scroll
- * up. A requestAnimationFrame lerp eases currentTime toward the target so the
- * scrub reads smoothly (exact smoothness also depends on the clip's keyframe
- * density). A brand-blue tint sits over it; bold agency copy comes in on the
- * right, then on the left; the panel fades out at the end so it dissolves
- * seamlessly into the next section.
+ * up. A rAF lerp eases currentTime toward the target, and seeks are gated on
+ * `!video.seeking` so we never pile up seek requests (which is what makes a
+ * scrubbed video appear frozen). Bold agency copy comes in on the right, then
+ * on the left; the panel fades out at the end to hand off to the next section.
  */
 export default function MediaStrip() {
   const themeRef = useSectionTheme('dark')
@@ -32,30 +32,34 @@ export default function MediaStrip() {
 
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start start', 'end end'] })
 
-  // Scrub: drive the video's currentTime from scroll, eased via a rAF lerp so it
-  // glides instead of jumping frame-to-frame.
   useEffect(() => {
     const v = videoRef.current
     if (!v) return
     v.pause()
 
-    const onMeta = () => {
-      if (Number.isFinite(v.duration)) durationRef.current = v.duration
-      // prime so seeked frames actually render (notably on iOS Safari)
-      v.play().then(() => v.pause()).catch(() => {})
+    const captureDuration = () => {
+      if (Number.isFinite(v.duration) && v.duration > 0) durationRef.current = v.duration
     }
-    if (v.readyState >= 1) onMeta()
-    v.addEventListener('loadedmetadata', onMeta)
+    captureDuration()
+    v.addEventListener('loadedmetadata', captureDuration)
+    v.addEventListener('durationchange', captureDuration)
+    v.addEventListener('canplay', captureDuration)
 
     let raf = 0
     let current = 0
     const tick = () => {
       const d = durationRef.current
-      if (d) {
-        const target = Math.min(d - 0.05, Math.max(0, scrollYProgress.get() * d))
-        current += (target - current) * 0.15
+      if (d > 0) {
+        const target = Math.max(0, Math.min(d - 0.05, scrollYProgress.get() * d))
+        // ease toward the scroll target so the scrub glides. The clip is now
+        // all-intra so seeks are cheap — track tightly to avoid a laggy feel.
+        current += (target - current) * 0.32
         if (Math.abs(target - current) < 0.004) current = target
-        if (Math.abs(v.currentTime - current) > 0.01) v.currentTime = current
+        // only issue a new seek once the previous one has finished — piling up
+        // seeks is exactly what freezes a scrubbed video
+        if (!v.seeking && Math.abs(v.currentTime - current) > 0.02) {
+          v.currentTime = current
+        }
       }
       raf = requestAnimationFrame(tick)
     }
@@ -63,7 +67,9 @@ export default function MediaStrip() {
 
     return () => {
       cancelAnimationFrame(raf)
-      v.removeEventListener('loadedmetadata', onMeta)
+      v.removeEventListener('loadedmetadata', captureDuration)
+      v.removeEventListener('durationchange', captureDuration)
+      v.removeEventListener('canplay', captureDuration)
     }
   }, [scrollYProgress])
 
@@ -76,17 +82,19 @@ export default function MediaStrip() {
   const leftOpacity = useTransform(scrollYProgress, [0.54, 0.64, 0.86, 0.94], [0, 1, 1, 0])
   const leftX = useTransform(scrollYProgress, [0.54, 0.64], [-56, 0])
 
+  const shadow = '0 2px 18px rgba(0,0,0,0.55)'
+
   return (
     <section ref={sectionRef} className="relative h-[300vh] bg-white !p-0">
       <motion.div
         ref={setStickyRef}
         style={{ opacity: panelOpacity }}
-        className="sticky top-0 h-screen w-full overflow-hidden bg-blue"
+        className="sticky top-0 h-screen w-full overflow-hidden bg-black"
       >
-        {/* scroll-scrubbed background video */}
+        {/* scroll-scrubbed background video (no tint overlay) */}
         <video
           ref={videoRef}
-          src="/renders/office-vr.mp4"
+          src="/renders/jellyfish.mp4"
           className="absolute inset-0 h-full w-full object-cover"
           muted
           playsInline
@@ -95,26 +103,16 @@ export default function MediaStrip() {
           data-cursor="view"
         />
 
-        {/* brand-blue tint (#383ce5) + dark depth for legibility */}
-        <div className="absolute inset-0 bg-blue/45" aria-hidden />
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              'linear-gradient(180deg, rgba(15,17,70,0.55) 0%, rgba(40,44,190,0.25) 50%, rgba(15,17,70,0.6) 100%)',
-          }}
-          aria-hidden
-        />
+        {/* watery hover overlay — brand-blue tint + ripples that trail the cursor */}
+        <WaterOverlay />
 
         {/* copy on the RIGHT */}
         <motion.div
           style={{ opacity: rightOpacity, x: rightX }}
           className="absolute inset-0 z-10 flex items-center justify-end px-6 text-right text-white md:px-16"
         >
-          <div className="max-w-xl">
-            <p className="mb-5 text-xs font-800 uppercase tracking-[0.4em] text-white/70 md:text-sm">
-              What we do
-            </p>
+          <div className="max-w-xl" style={{ textShadow: shadow }}>
+            <p className="mb-5 text-xs font-800 uppercase tracking-[0.4em] md:text-sm">What we do</p>
             <h2 className="font-sans text-4xl font-900 leading-[1.05] tracking-tight md:text-7xl">
               We build brands from the ground up — identity, 3D, motion and web, made to be felt.
             </h2>
@@ -126,10 +124,8 @@ export default function MediaStrip() {
           style={{ opacity: leftOpacity, x: leftX }}
           className="absolute inset-0 z-10 flex items-center justify-start px-6 text-left text-white md:px-16"
         >
-          <div className="max-w-xl">
-            <p className="mb-5 text-xs font-800 uppercase tracking-[0.4em] text-white/70 md:text-sm">
-              How we work
-            </p>
+          <div className="max-w-xl" style={{ textShadow: shadow }}>
+            <p className="mb-5 text-xs font-800 uppercase tracking-[0.4em] md:text-sm">How we work</p>
             <h2 className="font-sans text-4xl font-900 leading-[1.05] tracking-tight md:text-7xl">
               Strategy first — every mark, motion and material earns its place in your story.
             </h2>
