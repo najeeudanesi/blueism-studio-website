@@ -131,12 +131,12 @@ html.theme-dark {
   font-weight: 900;
   line-height: 1.02;
   letter-spacing: -0.02em;
-  font-size: clamp(3.6rem, 12.5vw, 11.5rem);
+  font-size: clamp(4.2rem, 14vw, 13.5rem);
 }
 
 /* Small uppercase meta label */
 .meta-label {
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   font-weight: 700;
@@ -179,7 +179,7 @@ html.theme-dark {
   background: #eeeef4;
   color: var(--ink);
   font-weight: 800;
-  font-size: 1rem;
+  font-size: 1.1rem;
   border: 1px solid rgba(0, 0, 0, 0.06);
   overflow: hidden;
   cursor: pointer;
@@ -216,7 +216,7 @@ html.theme-dark {
   background: #fff;
   color: var(--blue);
   font-weight: 700;
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   border-radius: 6px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
   transition:
@@ -228,23 +228,20 @@ html.theme-dark {
   color: #fff;
 }
 
-/* ---- Scroll hint: slow weightless float instead of a mechanical nudge ---- */
-@keyframes nudge {
-  0% {
-    transform: translateY(0);
-    opacity: 0.55;
-  }
-  50% {
-    transform: translateY(0.7em);
+/* ---- Typewriter caret blink ---- */
+@keyframes caret-blink {
+  0%, 45% {
     opacity: 1;
   }
+  50%, 95% {
+    opacity: 0;
+  }
   100% {
-    transform: translateY(0);
-    opacity: 0.55;
+    opacity: 1;
   }
 }
-.nudge {
-  animation: nudge 3.2s ease-in-out infinite;
+.typewriter-caret {
+  animation: caret-blink 0.9s step-end infinite;
 }
 
 /* ---- Dream grain: faint static noise veil over everything ---- */
@@ -298,7 +295,7 @@ body::after {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .nudge {
+  .typewriter-caret {
     animation: none;
   }
 }

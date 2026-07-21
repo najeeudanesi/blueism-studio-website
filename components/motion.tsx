@@ -42,42 +42,19 @@ export function SiteReadyProvider({ children }: { children: React.ReactNode }) {
 
 export const useSiteReady = () => useContext(SiteReadyContext)
 
-/* ---------- Word-split dream reveal: words surface from blur, no hard mask ---------- */
+/* ---------- Static text: no entrance animation ---------- */
 export function SplitWords({
   text,
   className = '',
-  delay = 0,
-  gate = false,
   as: Tag = 'span',
 }: {
   text: string
   className?: string
   delay?: number
-  gate?: boolean // wait for preloader instead of viewport
+  gate?: boolean
   as?: React.ElementType
 }) {
-  const { ready } = useSiteReady()
-  const ref = useRef<HTMLSpanElement>(null)
-  const inView = useInView(ref, { once: true, margin: '-15% 0px' })
-  const go = gate ? ready : inView
-
-  return (
-    <Tag ref={ref} className={className} aria-label={text}>
-      {text.split(' ').map((word, i) => (
-        <span key={i} className="inline-block align-bottom" aria-hidden>
-          <motion.span
-            className="inline-block"
-            initial={{ y: '16%', scale: 0.99, ...VEILED }}
-            animate={go ? { y: '0%', scale: 1, ...FOCUSED } : {}}
-            transition={{ duration: 0.85, delay: delay + i * 0.08, ease: EASE }}
-          >
-            {word}
-            {' '}
-          </motion.span>
-        </span>
-      ))}
-    </Tag>
-  )
+  return <Tag className={className}>{text}</Tag>
 }
 
 /* ---------- Subtle line reveal: quick rise with minimal blur ---------- */
@@ -140,7 +117,6 @@ export function MediaFrame({
   alt = '',
   className = '',
   radius = 20,
-  parallax = 4,
   priority = false,
 }: {
   src: string
@@ -150,39 +126,17 @@ export function MediaFrame({
   parallax?: number
   priority?: boolean
 }) {
-  const ref = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
-  // subtle parallax without springiness
-  const y = useTransform(scrollYProgress, [0, 1], [`-${parallax}%`, `${parallax}%`])
-
   return (
-    <motion.div
-      ref={ref}
-      className={`relative overflow-hidden ${className}`}
-      style={{ borderRadius: radius }}
-      initial={{ opacity: 0, scale: 0.99, filter: 'blur(6px)' }}
-      whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-      viewport={{ once: true, margin: '-12% 0px' }}
-      transition={{ duration: 1.0, ease: EASE }}
-    >
-      <motion.div
-        className="absolute inset-[-10%]"
-        style={{ y }}
-        initial={{ scale: 1.05 }}
-        whileInView={{ scale: 1 }}
-        viewport={{ once: true, margin: '-12% 0px' }}
-        transition={{ duration: 1.0, ease: EASE }}
-      >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={src}
-          alt={alt}
-          className="h-full w-full object-cover"
-          loading={priority ? 'eager' : 'lazy'}
-          data-cursor="view"
-        />
-      </motion.div>
-    </motion.div>
+    <div className={`relative overflow-hidden ${className}`} style={{ borderRadius: radius }}>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={src}
+        alt={alt}
+        className="h-full w-full object-cover"
+        loading={priority ? 'eager' : 'lazy'}
+        data-cursor="view"
+      />
+    </div>
   )
 }
 

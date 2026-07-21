@@ -42,13 +42,13 @@ export default function Navigation() {
         <ul className="hidden items-center gap-10 md:flex">
           {LINKS.map((l) => (
             <li key={l.label}>
-              <Link href={l.href} className="text-[0.8rem] font-600 tracking-wide">
+              <Link href={l.href} className="text-sm font-600 tracking-wide">
                 <RollLabel>{l.label}</RollLabel>
               </Link>
             </li>
           ))}
         </ul>
-        <Link href="#contact" className="text-xs font-bold md:hidden">
+        <Link href="#contact" className="text-sm font-bold md:hidden">
           Contact
         </Link>
       </nav>

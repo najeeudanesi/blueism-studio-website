@@ -1,9 +1,8 @@
 'use client'
 
-import { useRef } from 'react'
 import Link from 'next/link'
-import { motion, useScroll, useTransform } from 'framer-motion'
-import { Magnetic, RollLabel, SplitWords, useSectionTheme } from './motion'
+import { motion } from 'framer-motion'
+import { EASE, Magnetic, RollLabel, SplitWords, useSectionTheme } from './motion'
 
 /**
  * Gray hero — cloth render (cropped from the design file), blue "Blueism."
@@ -24,18 +23,24 @@ export default function Hero() {
       </div>
 
       <div className="relative z-10 flex h-full min-h-screen flex-col items-end justify-end px-5 md:px-10">
-        <div className="mx-auto w-full max-w-[1700px] flex flex-col gap-8 pb-14 md:flex-row md:items-end md:justify-between md:pb-20">
+        <motion.div
+          initial={{ opacity: 0, y: 36 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.8, ease: EASE }}
+          className="mx-auto w-full max-w-[1700px] flex flex-col gap-8 pb-14 md:flex-row md:items-end md:justify-between md:pb-20"
+        >
           <SplitWords
             as="h2"
             text="Blueism."
-            className="font-sans text-[16vw] font-medium leading-none tracking-tight text-blue md:text-[8rem]"
+            className="font-sans text-[18vw] font-medium leading-none tracking-tight text-blue md:text-[9.5rem]"
           />
           <Magnetic>
             <Link href="#contact" className="btn-rect mb-3">
               <RollLabel>Start a Project</RollLabel>
             </Link>
           </Magnetic>
-        </div>
+        </motion.div>
       </div>
     </section>
   )

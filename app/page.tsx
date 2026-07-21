@@ -22,8 +22,8 @@ export default function Page() {
       {/* white sheet with rounded bottom corners lifting off the fixed footer */}
       <main
         id="page-warp"
-        className="relative z-10 rounded-b-[3rem] bg-white shadow-[0_30px_60px_rgba(0,0,0,0.25)]"
-        style={{ overflowX: 'clip' }}
+        className="relative z-10 rounded-b-[2.75rem] bg-white shadow-[0_40px_80px_rgba(0,0,0,0.3)] md:rounded-b-[3.5rem]"
+        style={{ overflow: 'clip' }}
       >
         <Intro />
         <Hero />

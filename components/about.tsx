@@ -1,8 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { motion } from 'framer-motion'
-import { EASE_MASK, FadeUp, LineReveal, Magnetic, MediaFrame, useSectionTheme } from './motion'
+import { Magnetic, MediaFrame, useSectionTheme } from './motion'
 import Squiggle from './squiggle'
 
 export default function About() {
@@ -21,33 +20,27 @@ export default function About() {
       />
 
       <div className="relative z-10 mx-auto max-w-[1250px]">
-        <LineReveal as="h2" className="font-sans text-6xl font-900 tracking-tight text-ink md:text-8xl">
+        <h2 className="font-sans text-7xl font-900 tracking-tight text-ink md:text-9xl">
           About us
-        </LineReveal>
+        </h2>
 
-        <FadeUp delay={0.15}>
-          <p className="mt-8 max-w-3xl text-sm leading-relaxed text-ink md:text-base">
-            <em className="font-serif italic">Blueism</em> is a creative design studio dedicated to
-            building distinctive and meaningful brand identities. We help transform ideas into
-            memorable visual experiences through strategic thinking, creative concepts, and
-            purposeful design. From developing unique brand identities to crafting cohesive visual
-            systems, every project is approached with a focus on clarity, originality, and lasting
-            impact. By combining thoughtful concepts, refined graphics, and strong design
-            principles, Blueism creates brands that communicate with confidence, connect with
-            their audience, and stand out in a competitive market. Whether you&apos;re launching a
-            new business or redefining an existing one, Blueism delivers creative solutions that
-            bring your vision to life and establish a strong, recognizable identity.
-          </p>
-        </FadeUp>
+        <p className="mt-8 max-w-3xl text-base leading-relaxed text-ink md:text-lg">
+          <em className="font-serif italic">Blueism</em> is a creative design studio dedicated to
+          building distinctive and meaningful brand identities. We help transform ideas into
+          memorable visual experiences through strategic thinking, creative concepts, and
+          purposeful design. From developing unique brand identities to crafting cohesive visual
+          systems, every project is approached with a focus on clarity, originality, and lasting
+          impact. By combining thoughtful concepts, refined graphics, and strong design
+          principles, Blueism creates brands that communicate with confidence, connect with
+          their audience, and stand out in a competitive market. Whether you&apos;re launching a
+          new business or redefining an existing one, Blueism delivers creative solutions that
+          bring your vision to life and establish a strong, recognizable identity.
+        </p>
 
         <div className="mt-16 flex flex-col items-start gap-12 md:flex-row md:items-center md:justify-between">
           <div className="relative">
-            <motion.div
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              viewport={{ once: true, margin: '-15% 0px' }}
-              transition={{ duration: 1, delay: 0.2, ease: EASE_MASK }}
-              className="absolute -left-6 -top-4 h-[calc(100%+2rem)] w-[70%] origin-left bg-blue"
+            <div
+              className="absolute -left-6 -top-4 h-[calc(100%+2rem)] w-[70%] bg-blue"
               aria-hidden
             />
             <MediaFrame
@@ -58,14 +51,12 @@ export default function About() {
             />
           </div>
 
-          <FadeUp delay={0.25}>
-            <Magnetic>
-              <Link href="#contact" className="pill-cta">
-                <span className="pill-dot" aria-hidden />
-                <span className="pill-label">– Our Approach</span>
-              </Link>
-            </Magnetic>
-          </FadeUp>
+          <Magnetic>
+            <Link href="#contact" className="pill-cta">
+              <span className="pill-dot" aria-hidden />
+              <span className="pill-label">– Our Approach</span>
+            </Link>
+          </Magnetic>
         </div>
       </div>
     </section>

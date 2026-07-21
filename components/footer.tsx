@@ -1,6 +1,8 @@
 'use client'
 
+import { useCallback, useRef } from 'react'
 import Link from 'next/link'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import { FadeUp, LineReveal, Magnetic, RollLabel, useSectionTheme } from './motion'
 
 function InstagramIcon() {
@@ -22,66 +24,83 @@ function XIcon() {
 }
 
 /**
- * Lusion footer reveal: the white page sheet (with rounded bottom corners)
- * scrolls up off a footer that is fixed behind it via the clip-path trick.
+ * Footer reveal: the white page sheet (rounded bottom corners + shadow) lifts
+ * away as you scroll, uncovering the blue footer fixed behind it. The footer
+ * content slides up into place, scroll-linked, so the panel reads as "opening".
  */
 export default function Footer() {
-  const ref = useSectionTheme('blue')
+  const themeRef = useSectionTheme('blue')
+  const scrollRef = useRef<HTMLElement>(null)
+
+  // set both the theme sentinel ref and the scroll-progress ref on one node
+  const setRefs = useCallback(
+    (node: HTMLElement | null) => {
+      ;(themeRef as React.MutableRefObject<HTMLElement | null>).current = node
+      scrollRef.current = node
+    },
+    [themeRef],
+  )
+
+  // progresses 0 → 1 as the footer is scrolled into view from the bottom
+  const { scrollYProgress } = useScroll({ target: scrollRef, offset: ['start end', 'end end'] })
+  // content slides up + fades as the blue panel is uncovered
+  const y = useTransform(scrollYProgress, [0, 1], ['32%', '0%'])
+  const opacity = useTransform(scrollYProgress, [0, 0.35, 1], [0, 1, 1])
 
   return (
-    <footer
-      id="contact"
-      ref={ref}
-      className="relative h-[85vh]"
-      style={{ clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)' }}
-    >
-      <div className="fixed bottom-0 left-0 flex h-[85vh] w-full flex-col justify-between bg-blue px-5 pb-10 pt-24 text-white md:px-10">
-        <div className="mx-auto flex w-full max-w-[1600px] flex-col items-start justify-between gap-10 md:flex-row md:items-start">
-          <div>
-            <LineReveal as="p" className="text-2xl font-normal md:text-4xl">
-              <a href="mailto:Info@blueism-studio.com">
-                <RollLabel>Info@blueism-studio.com</RollLabel>
-              </a>
-            </LineReveal>
-            <LineReveal as="p" delay={0.1} className="mt-3 text-2xl font-normal md:text-4xl">
-              <a href="tel:+212123456789">
-                <RollLabel>+212 123456789</RollLabel>
-              </a>
-            </LineReveal>
+    <footer id="contact" ref={setRefs} className="relative h-[90vh]">
+      <div className="fixed bottom-0 left-0 h-[90vh] w-full overflow-hidden bg-blue text-white">
+        <motion.div
+          style={{ y, opacity }}
+          className="flex h-full w-full flex-col justify-between px-5 pb-10 pt-24 md:px-10"
+        >
+          <div className="mx-auto flex w-full max-w-[1600px] flex-col items-start justify-between gap-10 md:flex-row md:items-start">
+            <div>
+              <LineReveal as="p" className="text-3xl font-normal md:text-5xl">
+                <a href="mailto:Info@blueism-studio.com">
+                  <RollLabel>Info@blueism-studio.com</RollLabel>
+                </a>
+              </LineReveal>
+              <LineReveal as="p" delay={0.1} className="mt-3 text-3xl font-normal md:text-5xl">
+                <a href="tel:+212123456789">
+                  <RollLabel>+212 123456789</RollLabel>
+                </a>
+              </LineReveal>
+            </div>
+
+            <FadeUp delay={0.2}>
+              <div className="flex items-center gap-6">
+                <Magnetic>
+                  <Link
+                    href="https://instagram.com/blueismstudio"
+                    aria-label="Instagram"
+                    className="transition-opacity hover:opacity-70"
+                  >
+                    <InstagramIcon />
+                  </Link>
+                </Magnetic>
+                <Magnetic>
+                  <Link
+                    href="https://x.com/blueismstudio"
+                    aria-label="X"
+                    className="transition-opacity hover:opacity-70"
+                  >
+                    <XIcon />
+                  </Link>
+                </Magnetic>
+              </div>
+            </FadeUp>
           </div>
 
-          <FadeUp delay={0.2}>
-            <div className="flex items-center gap-6">
-              <Magnetic>
-                <Link
-                  href="https://instagram.com/blueismstudio"
-                  aria-label="Instagram"
-                  className="transition-opacity hover:opacity-70"
-                >
-                  <InstagramIcon />
-                </Link>
-              </Magnetic>
-              <Magnetic>
-                <Link
-                  href="https://x.com/blueismstudio"
-                  aria-label="X"
-                  className="transition-opacity hover:opacity-70"
-                >
-                  <XIcon />
-                </Link>
-              </Magnetic>
-            </div>
-          </FadeUp>
-        </div>
-
-        <div className="mx-auto flex w-full max-w-[1600px] items-end justify-between">
-          <p className="text-xs font-light tracking-wide text-white/85">
-            Rabat, Agdal, Hay francais WTH PK
-          </p>
-          <p className="text-[0.6rem] uppercase tracking-[0.25em] text-white/50">
-            © Blueism {new Date().getFullYear()}
-          </p>
-        </div>
+          <div className="mx-auto flex w-full max-w-[1600px] items-end justify-between">
+            <p className="text-sm font-light tracking-wide text-white/85">
+              Rabat, Agdal, Hay francais WTH PK
+            </p>
+            <p className="text-xs uppercase tracking-[0.25em] text-white/50">
+              © Blueism {new Date().getFullYear()}
+            </p>
+          </div>
+        </motion.div>
       </div>
     </footer>
   )

@@ -1,7 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { EASE_MASK, EASE_TEXT, FadeUp, useSectionTheme } from './motion'
+import { useSectionTheme } from './motion'
 import Squiggle from './squiggle'
 
 /**
@@ -22,49 +21,30 @@ export default function WeCreate() {
       />
 
       <div className="relative mx-auto max-w-2xl">
-        <h2 className="relative inline-block px-4 py-2 font-sans text-4xl font-extralight tracking-[0.12em] text-ink md:text-6xl">
-          {/* selection highlight sweeps in like a drag-select */}
-          <motion.span
-            className="absolute inset-0 origin-left bg-[#D7D7EB]"
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true, margin: '-20% 0px' }}
-            transition={{ duration: 1, ease: EASE_MASK }}
-            aria-hidden
-          />
+        <h2 className="relative inline-block px-4 py-2 font-sans text-5xl font-extralight tracking-[0.12em] text-ink md:text-7xl">
+          {/* selection highlight */}
+          <span className="absolute inset-0 bg-[#D7D7EB]" aria-hidden />
           {/* selection handles */}
-          <motion.span
+          <span
             className="absolute -left-1 -top-3 h-5 w-[3px] bg-blue before:absolute before:-left-[3.5px] before:-top-2 before:h-2.5 before:w-2.5 before:rounded-full before:bg-blue before:content-['']"
-            initial={{ opacity: 0, scale: 0 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, margin: '-20% 0px' }}
-            transition={{ duration: 0.5, delay: 0.9, ease: EASE_TEXT }}
             aria-hidden
           />
-          <motion.span
+          <span
             className="absolute -bottom-3 -right-1 h-5 w-[3px] bg-blue after:absolute after:-bottom-2 after:-left-[3.5px] after:h-2.5 after:w-2.5 after:rounded-full after:bg-blue after:content-['']"
-            initial={{ opacity: 0, scale: 0 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, margin: '-20% 0px' }}
-            transition={{ duration: 0.5, delay: 1.05, ease: EASE_TEXT }}
             aria-hidden
           />
           <span className="relative">WE CREATE?</span>
         </h2>
 
-        <FadeUp delay={0.3}>
-          <p className="mx-auto mt-10 max-w-xl text-[0.8rem] font-bold leading-relaxed text-blue md:text-sm">
-            Blueism is a creative studio that brings your ideas to life and fulfils your dream
-            identity — an experience where we enhance your creativity into something much bigger
-            than a picture, but something felt and real.
-          </p>
-        </FadeUp>
+        <p className="mx-auto mt-10 max-w-xl text-sm font-bold leading-relaxed text-blue md:text-base">
+          Blueism is a creative studio that brings your ideas to life and fulfils your dream
+          identity — an experience where we enhance your creativity into something much bigger
+          than a picture, but something felt and real.
+        </p>
 
-        <FadeUp delay={0.45}>
-          <p className="mt-8 text-base text-blue md:text-lg">
-            Start your journey by knowing our services — which are many.
-          </p>
-        </FadeUp>
+        <p className="mt-8 text-lg text-blue md:text-xl">
+          Start your journey by knowing our services — which are many.
+        </p>
       </div>
     </section>
   )

@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { EASE_TEXT, LineReveal, useSectionTheme } from './motion'
+import { EASE_TEXT, useSectionTheme } from './motion'
 import Squiggle from './squiggle'
 
 const WORDS = ['Branding', 'Design', '3D', 'Software']
@@ -45,17 +45,15 @@ export default function ServicesList() {
                 <Glyph />
               </motion.span>
             )}
-            <LineReveal delay={i * 0.08}>
-              <motion.span
-                className="giant-word block cursor-default"
-                onMouseEnter={() => setActive(i)}
-                animate={{ color: active === i ? '#0A0A0A' : '#BDBDBD' }}
-                transition={{ duration: 0.45, ease: EASE_TEXT }}
-                data-cursor="view"
-              >
-                {word}
-              </motion.span>
-            </LineReveal>
+            <motion.span
+              className="giant-word block cursor-default"
+              onMouseEnter={() => setActive(i)}
+              animate={{ color: active === i ? '#0A0A0A' : '#BDBDBD' }}
+              transition={{ duration: 0.45, ease: EASE_TEXT }}
+              data-cursor="view"
+            >
+              {word}
+            </motion.span>
           </li>
         ))}
       </ul>
